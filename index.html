@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdminZero — Practice Automation for Allied Health</title>
+  <meta name="description" content="AdminZero eliminates manual admin for allied health practices through intelligent automation. Referral processing, intake workflows, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #080808;
+      --white: #ffffff;
+      --accent: #0050ff;
+      --gray-100: #f7f7f7;
+      --gray-200: #efefef;
+      --gray-400: #b0b0b0;
+      --gray-600: #666666;
+      --red: #ff2d2d;
+      --border: #e8e8e8;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Instrument Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 5vw;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; font-size: 1.3rem; letter-spacing: -0.04em;
+      color: var(--black); text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-link { font-size: 0.875rem; color: var(--gray-600); text-decoration: none; transition: color 0.15s; }
+    .nav-link:hover { color: var(--black); }
+    .nav-cta {
+      font-size: 0.875rem; font-weight: 500; color: var(--white);
+      background: var(--black); text-decoration: none;
+      padding: 0.55rem 1.2rem; border-radius: 6px;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 9rem 5vw 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--accent); padding: 0.3rem 0.85rem;
+      border-radius: 4px; margin-bottom: 2rem; width: fit-content;
+      opacity: 0; animation: fadeUp 0.5s ease 0.1s forwards;
+    }
+    h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 0.93; letter-spacing: -0.04em;
+      max-width: 950px; margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+    h1 .accent { color: var(--accent); }
+    h1 .outline { -webkit-text-stroke: 2.5px var(--black); color: transparent; }
+    .hero-sub {
+      font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--gray-600);
+      max-width: 460px; line-height: 1.75; margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.6s ease 0.35s forwards;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.6s ease 0.5s forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--black); color: var(--white);
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 500;
+      padding: 0.9rem 2rem; border-radius: 6px; text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+    .btn-ghost {
+      font-size: 0.875rem; color: var(--gray-600); text-decoration: none;
+      border-bottom: 1px solid var(--border); padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-ghost:hover { color: var(--black); border-color: var(--black); }
+
+    .ticker-wrap {
+      overflow: hidden; background: var(--black);
+      padding: 0.9rem 0; margin-top: 5rem;
+      margin-left: -5vw; margin-right: -5vw;
+      opacity: 0; animation: fadeUp 0.6s ease 0.65s forwards;
+    }
+    .ticker { display: flex; gap: 3rem; white-space: nowrap; animation: scroll 22s linear infinite; }
+    .ticker-item {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray-400);
+      display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
+    }
+    .ticker-item b { color: var(--accent); font-size: 1rem; font-weight: 400; }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* STATS */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-cell { padding: 3rem 5vw; border-right: 1px solid var(--border); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell strong {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
+      letter-spacing: -0.04em; display: block; line-height: 1; margin-bottom: 0.5rem;
+    }
+    .stat-cell strong em { font-style: normal; color: var(--accent); }
+    .stat-cell p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.5; }
+
+    /* SECTIONS */
+    .section { padding: 7rem 5vw; border-bottom: 1px solid var(--border); }
+    .section-tag {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray-400); margin-bottom: 1.25rem;
+    }
+    h2 {
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 3.5rem); letter-spacing: -0.035em;
+      line-height: 1.05; margin-bottom: 1.25rem;
+    }
+    .section-sub { font-size: 1rem; color: var(--gray-600); max-width: 500px; line-height: 1.75; }
+
+    /* PAIN */
+    .pain-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+    .pain-grid { display: grid; grid-template-columns: repeat(2,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .pain-card { padding: 2.5rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.2s; }
+    .pain-card:nth-child(2n) { border-right: none; }
+    .pain-card:nth-last-child(-n+2) { border-bottom: none; }
+    .pain-card:hover { background: var(--gray-100); }
+    .pain-num { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 1.25rem; }
+    .pain-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.2; }
+    .pain-card p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.7; }
+    .pain-cost { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.25rem; font-size: 0.8rem; font-weight: 500; color: var(--red); }
+    .pain-cost::before { content: '↑'; }
+
+    /* HOW */
+    .how-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
+    .how-sticky { position: sticky; top: 7rem; }
+    .steps-list { display: flex; flex-direction: column; }
+    .step-item { display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+    .step-item:first-child { padding-top: 0; }
+    .step-item:last-child { border-bottom: none; }
+    .step-circle {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700; font-size: 0.875rem; color: var(--gray-400); flex-shrink: 0;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .step-item:hover .step-circle { background: var(--accent); color: var(--white); border-color: var(--accent); }
+    .step-content h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; padding-top: 0.55rem; }
+    .step-content p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.7; }
+
+    /* AUDIT */
+    .audit-section { background: var(--black); color: var(--white); padding: 7rem 5vw; }
+    .audit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; max-width: 1100px; }
+    .audit-section .section-tag { color: #444; }
+    .audit-section h2 { color: var(--white); }
+    .audit-section h2 em { font-style: normal; color: var(--accent); }
+    .audit-section .section-sub { color: var(--gray-400); margin-top: 1rem; }
+    .audit-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-top: 2rem; }
+    .audit-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--gray-400); line-height: 1.5; }
+    .audit-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 500; }
+
+    /* FORM */
+    .audit-form { background: var(--white); border-radius: 12px; padding: 2.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+    .form-heading { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--black); margin-bottom: 0.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .audit-form input, .audit-form select {
+      width: 100%; padding: 0.8rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 6px;
+      font-family: 'Instrument Sans', sans-serif; font-size: 0.875rem;
+      background: var(--white); color: var(--black); outline: none;
+      transition: border-color 0.15s; appearance: none;
+    }
+    .audit-form input:focus, .audit-form select:focus { border-color: var(--accent); }
+    .audit-form input::placeholder { color: var(--gray-400); }
+    .btn-submit {
+      width: 100%; padding: 0.95rem;
+      background: var(--black); color: var(--white);
+      font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+      border: none; border-radius: 6px; cursor: pointer; transition: background 0.15s; margin-top: 0.25rem;
+    }
+    .btn-submit:hover { background: var(--accent); }
+    .form-note { font-size: 0.78rem; color: var(--gray-400); text-align: center; line-height: 1.5; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 5vw; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 0.8rem; color: var(--gray-400); }
+    footer a { color: var(--gray-400); text-decoration: none; }
+    footer a:hover { color: var(--black); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .pain-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .pain-card { border-right: none !important; }
+      .how-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .how-sticky { position: static; }
+      .audit-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Admin<span>Zero</span></a>
+  <div class="nav-right">
+    <a href="#pain" class="nav-link">The Problem</a>
+    <a href="#how" class="nav-link">How It Works</a>
+    <a href="#audit" class="nav-cta">Book Free Audit</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-badge">Allied Health Automation · Australia</p>
+  <h1>
+    Stop doing<br/>
+    <span class="accent">admin</span><br/>
+    <span class="outline">by hand.</span>
+  </h1>
+  <p class="hero-sub">AdminZero automates the repetitive workflows draining your practice — starting with referral intake. Built on the Microsoft tools you already use.</p>
+  <div class="hero-actions">
+    <a href="#audit" class="btn-primary">Book a Free Practice Audit →</a>
+    <a href="#how" class="btn-ghost">See how it works ↓</a>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="ticker-item"><b>→</b> Referral Processing</div>
+      <div class="ticker-item"><b>→</b> Intake Automation</div>
+      <div class="ticker-item"><b>→</b> Appointment Reminders</div>
+      <div class="ticker-item"><b>→</b> NDIS Workflows</div>
+      <div class="ticker-item"><b>→</b> Staff Onboarding</div>
+      <div class="ticker-item"><b>→</b> Billing Admin</div>
+      <div class="ticker-item"><b>→</b> No-Show Recovery</div>
+      <div class="ticker-item"><b>→</b> Referral Processing</div>
+      <div class="ticker-item"><b>→</b> Intake Automation</div>
+      <div class="ticker-item"><b>→</b> Appointment Reminders</div>
+      <div class="ticker-item"><b>→</b> NDIS Workflows</div>
+      <div class="ticker-item"><b>→</b> Staff Onboarding</div>
+      <div class="ticker-item"><b>→</b> Billing Admin</div>
+      <div class="ticker-item"><b>→</b> No-Show Recovery</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-cell reveal">
+    <strong>15<em>–</em>20<em>min</em></strong>
+    <p>lost on every manual referral your team processes</p>
+  </div>
+  <div class="stat-cell reveal">
+    <strong><em>$</em>200<em>+</em></strong>
+    <p>revenue lost per no-show with no waitlist system</p>
+  </div>
+  <div class="stat-cell reveal">
+    <strong>Week<em> 1</em></strong>
+    <p>when most practices see measurable time recovered</p>
+  </div>
+</div>
+
+<section class="section" id="pain">
+  <div class="pain-header">
+    <div>
+      <p class="section-tag reveal">The Problem</p>
+      <h2 class="reveal">Your team is doing work a machine should do.</h2>
+    </div>
+    <p class="section-sub reveal">You built a clinical practice, not an admin department. But that's what it becomes without the right systems.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card reveal">
+      <p class="pain-num">01</p>
+      <h3>Referral & Intake Processing</h3>
+      <p>Referrals arrive by fax, email, and PDF. Someone reads each one, creates a record, books the appointment, and sends confirmation — manually, every time.</p>
+      <p class="pain-cost">15–20 minutes per referral</p>
+    </div>
+    <div class="pain-card reveal">
+      <p class="pain-num">02</p>
+      <h3>Appointment Reminders & No-Shows</h3>
+      <p>Manual reminder calls still result in gaps. Every no-show is revenue gone with no system to automatically fill the slot from your waitlist.</p>
+      <p class="pain-cost">$80–200 per missed appointment</p>
+    </div>
+    <div class="pain-card reveal">
+      <p class="pain-num">03</p>
+      <h3>Insurance & Billing Paperwork</h3>
+      <p>NDIS, WorkCover, private health — each has different forms and follow-ups. High NDIS volume means your admin is buried before lunch every day.</p>
+      <p class="pain-cost">Hours per week, per clinician</p>
+    </div>
+    <div class="pain-card reveal">
+      <p class="pain-num">04</p>
+      <h3>Staff Onboarding & Knowledge Loss</h3>
+      <p>When a receptionist leaves, so does everything they knew. No documented processes, no handover. The next hire starts from zero.</p>
+      <p class="pain-cost">Days lost per staff turnover</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="how-wrap">
+    <div class="how-sticky">
+      <p class="section-tag reveal">How It Works</p>
+      <h2 class="reveal">Simple process.<br/>Permanent results.</h2>
+      <p class="section-sub reveal" style="margin-top:1rem;">No IT department needed. No ripping out existing systems. We build inside Microsoft 365 — the tools you already pay for.</p>
+    </div>
+    <div class="steps-list">
+      <div class="step-item reveal">
+        <div class="step-circle">01</div>
+        <div class="step-content">
+          <h3>Free Practice Audit</h3>
+          <p>A 30-minute call to map your current admin workflows and identify exactly where time is being lost. No cost, no commitment, no pitch deck.</p>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">02</div>
+        <div class="step-content">
+          <h3>Custom Automation Build</h3>
+          <p>We build workflows specific to your practice using Power Automate and AI. Not templates — solutions designed around how your practice actually works.</p>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">03</div>
+        <div class="step-content">
+          <h3>Live Within a Week</h3>
+          <p>Most builds go live in days. Your team gets a full walkthrough and we stay on hand to adjust anything before sign-off.</p>
+        </div>
+      </div>
+      <div class="step-item reveal">
+        <div class="step-circle">04</div>
+        <div class="step-content">
+          <h3>Ongoing Support & Optimisation</h3>
+          <p>We monitor, maintain, and improve your automations as your practice grows. One flat monthly retainer — no surprise invoices.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="audit-section" id="audit">
+  <div class="audit-inner">
+    <div>
+      <p class="section-tag">Free — No Obligation</p>
+      <h2>Book your free<br/><em>Practice Automation</em><br/>Audit.</h2>
+      <p class="section-sub">A 30-minute call. We map your admin bottlenecks, show you what can be automated, and give you an honest picture of what it's worth in recovered time.</p>
+      <ul class="audit-list">
+        <li>Referral and intake workflow review</li>
+        <li>Time and cost analysis of your manual processes</li>
+        <li>A clear automation roadmap you can act on straight away</li>
+        <li>No lock-in, no obligation, no sales pressure</li>
+      </ul>
+    </div>
+    <div>
+      <form class="audit-form" name="audit" method="POST" data-netlify="true">
+        <p class="form-heading">Let's talk.</p>
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="text" name="practice" placeholder="Practice name" required />
+        </div>
+        <input type="email" name="email" placeholder="Email address" required />
+        <input type="tel" name="phone" placeholder="Phone number (optional)" />
+        <select name="size" required>
+          <option value="" disabled selected>Practice size</option>
+          <option>Solo practitioner</option>
+          <option>2–5 clinicians</option>
+          <option>6–15 clinicians</option>
+          <option>15+ clinicians</option>
+        </select>
+        <select name="pain" required>
+          <option value="" disabled selected>Biggest admin headache</option>
+          <option>Referral processing</option>
+          <option>Appointment reminders / no-shows</option>
+          <option>NDIS / insurance paperwork</option>
+          <option>Staff onboarding</option>
+          <option>Something else</option>
+        </select>
+        <button type="submit" class="btn-submit">Book My Free Audit →</button>
+        <p class="form-note">We respond within one business day. Based in Melbourne, serving practices Australia-wide.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="logo">Admin<span>Zero</span></a>
+  <p>© 2025 AdminZero · Melbourne, Australia · <a href="mailto:hello@adminzero.com.au">hello@adminzero.com.au</a></p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
