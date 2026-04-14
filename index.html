@@ -7,434 +7,686 @@
   <meta name="description" content="AdminZero eliminates manual admin for allied health practices through intelligent automation. Referral processing, intake workflows, and more." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --black: #080808;
+      --ink: #0a0a0a;
+      --paper: #f4f1eb;
       --white: #ffffff;
-      --accent: #0050ff;
-      --gray-100: #f7f7f7;
-      --gray-200: #efefef;
-      --gray-400: #b0b0b0;
-      --gray-600: #666666;
-      --red: #ff2d2d;
-      --border: #e8e8e8;
+      --rule: #0a0a0a;
+      --mid: #888;
+      --light: #d4d0c8;
     }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Instrument Sans', sans-serif;
-      background: var(--white);
-      color: var(--black);
+      font-family: 'Jost', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
     }
+
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.1rem 5vw;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 5vw;
+      height: 56px;
     }
-    .logo {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800; font-size: 1.3rem; letter-spacing: -0.04em;
-      color: var(--black); text-decoration: none;
+    .nav-left { display: flex; gap: 2rem; }
+    .nav-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.15s;
     }
-    .logo span { color: var(--accent); }
-    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-link { font-size: 0.875rem; color: var(--gray-600); text-decoration: none; transition: color 0.15s; }
-    .nav-link:hover { color: var(--black); }
+    .nav-link:hover { color: var(--ink); }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+      text-align: center;
+    }
+    .nav-logo em { font-style: italic; }
+    .nav-right { display: flex; justify-content: flex-end; }
     .nav-cta {
-      font-size: 0.875rem; font-weight: 500; color: var(--white);
-      background: var(--black); text-decoration: none;
-      padding: 0.55rem 1.2rem; border-radius: 6px;
-      transition: background 0.15s, transform 0.15s;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      transition: opacity 0.15s;
     }
-    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+    .nav-cta:hover { opacity: 0.75; }
 
-    /* HERO */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; padding: 9rem 5vw 0;
-      border-bottom: 1px solid var(--border);
+    /* ── MASTHEAD ── */
+    .masthead {
+      padding: 5rem 5vw 0;
+      border-bottom: 2px solid var(--ink);
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--accent);
-      border: 1px solid var(--accent); padding: 0.3rem 0.85rem;
-      border-radius: 4px; margin-bottom: 2rem; width: fit-content;
-      opacity: 0; animation: fadeUp 0.5s ease 0.1s forwards;
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--light);
+      margin-bottom: 2rem;
     }
-    h1 {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 800;
-      font-size: clamp(3.5rem, 9vw, 8rem);
-      line-height: 0.93; letter-spacing: -0.04em;
-      max-width: 950px; margin-bottom: 2rem;
-      opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+    .masthead-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
     }
-    h1 .accent { color: var(--accent); }
-    h1 .outline { -webkit-text-stroke: 2.5px var(--black); color: transparent; }
-    .hero-sub {
-      font-size: clamp(1rem, 1.5vw, 1.15rem); color: var(--gray-600);
-      max-width: 460px; line-height: 1.75; margin-bottom: 2.5rem;
-      opacity: 0; animation: fadeUp 0.6s ease 0.35s forwards;
+    .masthead-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      text-transform: uppercase;
     }
-    .hero-actions {
-      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.6s ease 0.5s forwards;
+    .headline-wrap {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 3rem;
+      align-items: end;
+      padding-bottom: 3rem;
+    }
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(3.5rem, 8vw, 7.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+    .headline em {
+      font-style: italic;
+      position: relative;
+    }
+    .headline-aside {
+      padding-left: 2rem;
+      border-left: 2px solid var(--ink);
+    }
+    .headline-aside p {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #333;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
     }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--black); color: var(--white);
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 0.95rem; font-weight: 500;
-      padding: 0.9rem 2rem; border-radius: 6px; text-decoration: none;
-      transition: background 0.15s, transform 0.15s;
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      transition: opacity 0.15s;
     }
-    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
-    .btn-ghost {
-      font-size: 0.875rem; color: var(--gray-600); text-decoration: none;
-      border-bottom: 1px solid var(--border); padding-bottom: 1px;
-      transition: color 0.15s, border-color 0.15s;
+    .btn-primary:hover { opacity: 0.75; }
+    .subheadline-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--light);
     }
-    .btn-ghost:hover { color: var(--black); border-color: var(--black); }
+    .subhead-col {
+      padding: 1.5rem 0;
+      border-right: 1px solid var(--light);
+      padding-right: 2rem;
+    }
+    .subhead-col:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
+    .subhead-col:nth-child(2) { padding-left: 2rem; }
+    .subhead-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+    }
+    .subhead-num em { font-style: italic; }
+    .subhead-col p {
+      font-size: 0.82rem;
+      color: var(--mid);
+      line-height: 1.5;
+      font-weight: 300;
+    }
 
-    .ticker-wrap {
-      overflow: hidden; background: var(--black);
-      padding: 0.9rem 0; margin-top: 5rem;
-      margin-left: -5vw; margin-right: -5vw;
-      opacity: 0; animation: fadeUp 0.6s ease 0.65s forwards;
+    /* ── COLUMNS SECTION ── */
+    .columns-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 2px solid var(--ink);
     }
-    .ticker { display: flex; gap: 3rem; white-space: nowrap; animation: scroll 22s linear infinite; }
-    .ticker-item {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gray-400);
-      display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
+    .col-block {
+      padding: 3rem 3rem 3rem 0;
+      border-right: 1px solid var(--light);
+      margin-left: 5vw;
     }
-    .ticker-item b { color: var(--accent); font-size: 1rem; font-weight: 400; }
-    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .col-block:first-child { margin-left: 5vw; }
+    .col-block:last-child { border-right: none; margin-right: 5vw; }
+    .col-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .col-label::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: var(--mid);
+    }
+    .col-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.85rem;
+    }
+    .col-block p {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: #444;
+      font-weight: 300;
+    }
+    .col-cost {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      border-top: 1px solid var(--ink);
+      padding-top: 0.5rem;
+    }
 
-    /* STATS */
-    .stats-bar {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      border-bottom: 1px solid var(--border);
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border-bottom: 2px solid var(--ink);
     }
-    .stat-cell { padding: 3rem 5vw; border-right: 1px solid var(--border); }
-    .stat-cell:last-child { border-right: none; }
-    .stat-cell strong {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
-      letter-spacing: -0.04em; display: block; line-height: 1; margin-bottom: 0.5rem;
+    .how-label-col {
+      padding: 4rem 3rem 4rem 5vw;
+      border-right: 2px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .stat-cell strong em { font-style: normal; color: var(--accent); }
-    .stat-cell p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.5; }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 2.2rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .section-heading em { font-style: italic; }
+    .how-steps {
+      padding: 4rem 5vw 4rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 4rem;
+    }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 3rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--light);
+      margin-bottom: 0.75rem;
+    }
+    .how-steps h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .how-steps p {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: #555;
+      font-weight: 300;
+    }
 
-    /* SECTIONS */
-    .section { padding: 7rem 5vw; border-bottom: 1px solid var(--border); }
-    .section-tag {
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--gray-400); margin-bottom: 1.25rem;
+    /* ── AUDIT / FORM ── */
+    .audit-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 2px solid var(--ink);
+      min-height: 600px;
     }
-    h2 {
-      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
-      font-size: clamp(2rem, 4.5vw, 3.5rem); letter-spacing: -0.035em;
-      line-height: 1.05; margin-bottom: 1.25rem;
+    .audit-left {
+      padding: 4rem 4rem 4rem 5vw;
+      border-right: 2px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .section-sub { font-size: 1rem; color: var(--gray-600); max-width: 500px; line-height: 1.75; }
-
-    /* PAIN */
-    .pain-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
-    .pain-grid { display: grid; grid-template-columns: repeat(2,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .pain-card { padding: 2.5rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background 0.2s; }
-    .pain-card:nth-child(2n) { border-right: none; }
-    .pain-card:nth-last-child(-n+2) { border-bottom: none; }
-    .pain-card:hover { background: var(--gray-100); }
-    .pain-num { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 1.25rem; }
-    .pain-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; line-height: 1.2; }
-    .pain-card p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.7; }
-    .pain-cost { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.25rem; font-size: 0.8rem; font-weight: 500; color: var(--red); }
-    .pain-cost::before { content: '↑'; }
-
-    /* HOW */
-    .how-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
-    .how-sticky { position: sticky; top: 7rem; }
-    .steps-list { display: flex; flex-direction: column; }
-    .step-item { display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); align-items: start; }
-    .step-item:first-child { padding-top: 0; }
-    .step-item:last-child { border-bottom: none; }
-    .step-circle {
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 1.5px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-weight: 700; font-size: 0.875rem; color: var(--gray-400); flex-shrink: 0;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    .audit-left .section-heading { color: var(--paper); }
+    .audit-left .section-heading em { color: var(--paper); }
+    .audit-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.5rem;
     }
-    .step-item:hover .step-circle { background: var(--accent); color: var(--white); border-color: var(--accent); }
-    .step-content h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; padding-top: 0.55rem; }
-    .step-content p { font-size: 0.875rem; color: var(--gray-600); line-height: 1.7; }
-
-    /* AUDIT */
-    .audit-section { background: var(--black); color: var(--white); padding: 7rem 5vw; }
-    .audit-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; max-width: 1100px; }
-    .audit-section .section-tag { color: #444; }
-    .audit-section h2 { color: var(--white); }
-    .audit-section h2 em { font-style: normal; color: var(--accent); }
-    .audit-section .section-sub { color: var(--gray-400); margin-top: 1rem; }
-    .audit-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-top: 2rem; }
-    .audit-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: var(--gray-400); line-height: 1.5; }
-    .audit-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 500; }
-
-    /* FORM */
-    .audit-form { background: var(--white); border-radius: 12px; padding: 2.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
-    .form-heading { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; color: var(--black); margin-bottom: 0.1rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .audit-form input, .audit-form select {
-      width: 100%; padding: 0.8rem 1rem;
-      border: 1.5px solid var(--border); border-radius: 6px;
-      font-family: 'Instrument Sans', sans-serif; font-size: 0.875rem;
-      background: var(--white); color: var(--black); outline: none;
-      transition: border-color 0.15s; appearance: none;
+    .audit-desc {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: #aaa;
+      font-weight: 300;
+      margin-top: 1.5rem;
+      max-width: 380px;
     }
-    .audit-form input:focus, .audit-form select:focus { border-color: var(--accent); }
-    .audit-form input::placeholder { color: var(--gray-400); }
+    .audit-checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+    .audit-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #aaa;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    .audit-checklist li::before {
+      content: '01';
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--mid);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .audit-checklist li:nth-child(2)::before { content: '02'; }
+    .audit-checklist li:nth-child(3)::before { content: '03'; }
+    .audit-checklist li:nth-child(4)::before { content: '04'; }
+    .audit-right {
+      padding: 4rem 5vw 4rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .form-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 2rem;
+    }
+    .audit-form { display: flex; flex-direction: column; gap: 0; }
+    .form-field {
+      border-top: 1px solid var(--light);
+      padding: 0.75rem 0;
+      position: relative;
+    }
+    .form-field:last-of-type { border-bottom: 1px solid var(--light); }
+    .audit-form input,
+    .audit-form select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--ink);
+      padding: 0.25rem 0;
+      appearance: none;
+    }
+    .audit-form input::placeholder { color: var(--mid); }
+    .audit-form select option { background: var(--paper); color: var(--ink); }
+    .form-row-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 2rem;
+      border-top: 1px solid var(--light);
+      padding: 0.75rem 0;
+    }
+    .form-row-grid input { border-right: 1px solid var(--light); padding-right: 1rem; }
+    .form-row-grid input:last-child { border-right: none; padding-right: 0; padding-left: 1rem; }
     .btn-submit {
-      width: 100%; padding: 0.95rem;
-      background: var(--black); color: var(--white);
-      font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
-      border: none; border-radius: 6px; cursor: pointer; transition: background 0.15s; margin-top: 0.25rem;
+      margin-top: 2rem;
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      border: none;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      align-self: flex-start;
     }
-    .btn-submit:hover { background: var(--accent); }
-    .form-note { font-size: 0.78rem; color: var(--gray-400); text-align: center; line-height: 1.5; }
+    .btn-submit:hover { opacity: 0.75; }
+    .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .form-note {
+      margin-top: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    .success-block {
+      display: none;
+      padding: 2rem 0;
+    }
+    .success-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+    }
+    .success-block p {
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.7;
+      font-weight: 300;
+    }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      padding: 2rem 5vw; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 1.25rem 5vw;
+      border-top: 2px solid var(--ink);
     }
-    footer p { font-size: 0.8rem; color: var(--gray-400); }
-    footer a { color: var(--gray-400); text-decoration: none; }
-    footer a:hover { color: var(--black); }
+    .footer-left {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .footer-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      text-align: right;
+    }
+    .footer-right a { color: var(--mid); text-decoration: none; }
+    .footer-right a:hover { color: var(--ink); }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 768px) {
-      .stats-bar { grid-template-columns: 1fr; }
-      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); }
-      .pain-header { grid-template-columns: 1fr; gap: 1.5rem; }
-      .pain-grid { grid-template-columns: 1fr; }
-      .pain-card { border-right: none !important; }
-      .how-wrap { grid-template-columns: 1fr; gap: 3rem; }
-      .how-sticky { position: static; }
-      .audit-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .form-row { grid-template-columns: 1fr; }
-      .nav-link { display: none; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .headline-wrap { grid-template-columns: 1fr; }
+      .headline-aside { border-left: none; border-top: 1px solid var(--light); padding-left: 0; padding-top: 1.5rem; margin-top: 1.5rem; }
+      .subheadline-row { grid-template-columns: 1fr; }
+      .subhead-col { border-right: none; border-bottom: 1px solid var(--light); padding: 1.25rem 0; padding-left: 0 !important; }
+      .columns-section { grid-template-columns: 1fr; }
+      .col-block { border-right: none; border-bottom: 1px solid var(--light); margin-left: 5vw; margin-right: 5vw; padding: 2.5rem 0; }
+      .how-section { grid-template-columns: 1fr; }
+      .how-label-col { border-right: none; border-bottom: 1px solid var(--ink); padding: 3rem 5vw; }
+      .how-steps { grid-template-columns: 1fr; padding: 3rem 5vw; gap: 2.5rem; }
+      .audit-section { grid-template-columns: 1fr; }
+      .audit-left { border-right: none; border-bottom: 2px solid var(--ink); }
+      .audit-right { padding: 3rem 5vw; }
+      nav { grid-template-columns: 1fr auto; }
+      .nav-left { display: none; }
+      footer { grid-template-columns: 1fr 1fr; }
+      .footer-logo { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a href="#" class="logo">Admin<span>Zero</span></a>
-  <div class="nav-right">
+  <div class="nav-left">
     <a href="#pain" class="nav-link">The Problem</a>
     <a href="#how" class="nav-link">How It Works</a>
-    <a href="#audit" class="nav-cta">Book Free Audit</a>
+  </div>
+  <a href="#" class="nav-logo">Admin<em>Zero</em></a>
+  <div class="nav-right">
+    <a href="#audit" class="nav-cta">Free Audit</a>
   </div>
 </nav>
 
-<section class="hero">
-  <p class="hero-badge">Allied Health Automation · Australia</p>
-  <h1>
-    Stop doing<br/>
-    <span class="accent">admin</span><br/>
-    <span class="outline">by hand.</span>
-  </h1>
-  <p class="hero-sub">AdminZero automates the repetitive workflows draining your practice — starting with referral intake. Built on the Microsoft tools you already use.</p>
-  <div class="hero-actions">
-    <a href="#audit" class="btn-primary">Book a Free Practice Audit →</a>
-    <a href="#how" class="btn-ghost">See how it works ↓</a>
+<!-- MASTHEAD / HERO -->
+<section class="masthead">
+  <div class="masthead-top">
+    <span class="masthead-date">Melbourne, Australia &mdash; Allied Health Edition</span>
+    <span class="masthead-tag">Practice Automation Specialists</span>
   </div>
-  <div class="ticker-wrap">
-    <div class="ticker">
-      <div class="ticker-item"><b>→</b> Referral Processing</div>
-      <div class="ticker-item"><b>→</b> Intake Automation</div>
-      <div class="ticker-item"><b>→</b> Appointment Reminders</div>
-      <div class="ticker-item"><b>→</b> NDIS Workflows</div>
-      <div class="ticker-item"><b>→</b> Staff Onboarding</div>
-      <div class="ticker-item"><b>→</b> Billing Admin</div>
-      <div class="ticker-item"><b>→</b> No-Show Recovery</div>
-      <div class="ticker-item"><b>→</b> Referral Processing</div>
-      <div class="ticker-item"><b>→</b> Intake Automation</div>
-      <div class="ticker-item"><b>→</b> Appointment Reminders</div>
-      <div class="ticker-item"><b>→</b> NDIS Workflows</div>
-      <div class="ticker-item"><b>→</b> Staff Onboarding</div>
-      <div class="ticker-item"><b>→</b> Billing Admin</div>
-      <div class="ticker-item"><b>→</b> No-Show Recovery</div>
+  <div class="headline-wrap reveal">
+    <h1 class="headline">
+      Your team<br/>
+      deserves<br/>
+      better than<br/>
+      <em>paperwork.</em>
+    </h1>
+    <div class="headline-aside">
+      <p>AdminZero eliminates the manual admin workflows draining allied health practices across Australia &mdash; starting with referral intake. Built on the Microsoft 365 tools you already use.</p>
+      <a href="#audit" class="btn-primary">Book a Free Practice Audit &rarr;</a>
+    </div>
+  </div>
+  <div class="subheadline-row reveal">
+    <div class="subhead-col">
+      <div class="subhead-num">15<em>&ndash;</em>20<em>min</em></div>
+      <p>lost per manual referral processed by your team</p>
+    </div>
+    <div class="subhead-col">
+      <div class="subhead-num">$200<em>+</em></div>
+      <p>revenue lost on every no-show with no waitlist system</p>
+    </div>
+    <div class="subhead-col">
+      <div class="subhead-num"><em>Week</em> 1</div>
+      <p>when most practices see measurable time recovered</p>
     </div>
   </div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat-cell reveal">
-    <strong>15<em>–</em>20<em>min</em></strong>
-    <p>lost on every manual referral your team processes</p>
+<!-- PAIN POINTS -->
+<section class="columns-section" id="pain">
+  <div class="col-block reveal">
+    <p class="col-label">Problem 01</p>
+    <h3>Referral &amp; Intake Processing</h3>
+    <p>Referrals arrive by fax, email, and PDF. Someone reads each one, creates a patient record, books the appointment, and sends a confirmation &mdash; manually, every single time.</p>
+    <span class="col-cost">15&ndash;20 min per referral</span>
   </div>
-  <div class="stat-cell reveal">
-    <strong><em>$</em>200<em>+</em></strong>
-    <p>revenue lost per no-show with no waitlist system</p>
+  <div class="col-block reveal">
+    <p class="col-label">Problem 02</p>
+    <h3>No-Shows &amp; Reminder Gaps</h3>
+    <p>Manual reminder calls still leave gaps in the schedule. Every no-show is revenue gone, with no automated system to pull the next patient off the waitlist and fill the slot.</p>
+    <span class="col-cost">$80&ndash;$200 per missed appointment</span>
   </div>
-  <div class="stat-cell reveal">
-    <strong>Week<em> 1</em></strong>
-    <p>when most practices see measurable time recovered</p>
+  <div class="col-block reveal">
+    <p class="col-label">Problem 03</p>
+    <h3>NDIS &amp; Insurance Paperwork</h3>
+    <p>NDIS, WorkCover, private health &mdash; each scheme has different forms, different follow-up requirements, different timelines. Practices with high NDIS volume are buried before lunch every day.</p>
+    <span class="col-cost">Hours per week, per clinician</span>
   </div>
-</div>
+</section>
 
-<section class="section" id="pain">
-  <div class="pain-header">
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-label-col">
     <div>
-      <p class="section-tag reveal">The Problem</p>
-      <h2 class="reveal">Your team is doing work a machine should do.</h2>
+      <p class="col-label" style="margin-bottom:1.5rem;">Process</p>
+      <h2 class="section-heading">Simple<br/><em>process.</em><br/>Permanent<br/>results.</h2>
     </div>
-    <p class="section-sub reveal">You built a clinical practice, not an admin department. But that's what it becomes without the right systems.</p>
+    <p style="font-size:0.82rem;color:var(--mid);line-height:1.65;font-weight:300;">No IT department. No ripping out existing systems. We work inside the tools you already pay for.</p>
   </div>
-  <div class="pain-grid">
-    <div class="pain-card reveal">
-      <p class="pain-num">01</p>
-      <h3>Referral & Intake Processing</h3>
-      <p>Referrals arrive by fax, email, and PDF. Someone reads each one, creates a record, books the appointment, and sends confirmation — manually, every time.</p>
-      <p class="pain-cost">15–20 minutes per referral</p>
+  <div class="how-steps">
+    <div class="reveal">
+      <div class="step-num">01</div>
+      <h3>Free Practice Audit</h3>
+      <p>A 30-minute call to map your admin workflows and identify exactly where time is being lost. No cost, no commitment, no pitch deck.</p>
     </div>
-    <div class="pain-card reveal">
-      <p class="pain-num">02</p>
-      <h3>Appointment Reminders & No-Shows</h3>
-      <p>Manual reminder calls still result in gaps. Every no-show is revenue gone with no system to automatically fill the slot from your waitlist.</p>
-      <p class="pain-cost">$80–200 per missed appointment</p>
+    <div class="reveal">
+      <div class="step-num">02</div>
+      <h3>Custom Automation Build</h3>
+      <p>We build workflows specific to your practice using Power Automate and AI. Not templates &mdash; solutions built around how your practice actually runs.</p>
     </div>
-    <div class="pain-card reveal">
-      <p class="pain-num">03</p>
-      <h3>Insurance & Billing Paperwork</h3>
-      <p>NDIS, WorkCover, private health — each has different forms and follow-ups. High NDIS volume means your admin is buried before lunch every day.</p>
-      <p class="pain-cost">Hours per week, per clinician</p>
+    <div class="reveal">
+      <div class="step-num">03</div>
+      <h3>Live Within a Week</h3>
+      <p>Most builds go live in days. Your team gets a full walkthrough and we stay on hand to refine anything before handover.</p>
     </div>
-    <div class="pain-card reveal">
-      <p class="pain-num">04</p>
-      <h3>Staff Onboarding & Knowledge Loss</h3>
-      <p>When a receptionist leaves, so does everything they knew. No documented processes, no handover. The next hire starts from zero.</p>
-      <p class="pain-cost">Days lost per staff turnover</p>
+    <div class="reveal">
+      <div class="step-num">04</div>
+      <h3>Ongoing Support</h3>
+      <p>We monitor, maintain, and improve your automations as your practice grows. One flat monthly retainer &mdash; no surprises.</p>
     </div>
   </div>
 </section>
 
-<section class="section" id="how">
-  <div class="how-wrap">
-    <div class="how-sticky">
-      <p class="section-tag reveal">How It Works</p>
-      <h2 class="reveal">Simple process.<br/>Permanent results.</h2>
-      <p class="section-sub reveal" style="margin-top:1rem;">No IT department needed. No ripping out existing systems. We build inside Microsoft 365 — the tools you already pay for.</p>
-    </div>
-    <div class="steps-list">
-      <div class="step-item reveal">
-        <div class="step-circle">01</div>
-        <div class="step-content">
-          <h3>Free Practice Audit</h3>
-          <p>A 30-minute call to map your current admin workflows and identify exactly where time is being lost. No cost, no commitment, no pitch deck.</p>
-        </div>
-      </div>
-      <div class="step-item reveal">
-        <div class="step-circle">02</div>
-        <div class="step-content">
-          <h3>Custom Automation Build</h3>
-          <p>We build workflows specific to your practice using Power Automate and AI. Not templates — solutions designed around how your practice actually works.</p>
-        </div>
-      </div>
-      <div class="step-item reveal">
-        <div class="step-circle">03</div>
-        <div class="step-content">
-          <h3>Live Within a Week</h3>
-          <p>Most builds go live in days. Your team gets a full walkthrough and we stay on hand to adjust anything before sign-off.</p>
-        </div>
-      </div>
-      <div class="step-item reveal">
-        <div class="step-circle">04</div>
-        <div class="step-content">
-          <h3>Ongoing Support & Optimisation</h3>
-          <p>We monitor, maintain, and improve your automations as your practice grows. One flat monthly retainer — no surprise invoices.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- AUDIT FORM -->
 <section class="audit-section" id="audit">
-  <div class="audit-inner">
+  <div class="audit-left">
     <div>
-      <p class="section-tag">Free — No Obligation</p>
-      <h2>Book your free<br/><em>Practice Automation</em><br/>Audit.</h2>
-      <p class="section-sub">A 30-minute call. We map your admin bottlenecks, show you what can be automated, and give you an honest picture of what it's worth in recovered time.</p>
-      <ul class="audit-list">
-        <li>Referral and intake workflow review</li>
-        <li>Time and cost analysis of your manual processes</li>
-        <li>A clear automation roadmap you can act on straight away</li>
-        <li>No lock-in, no obligation, no sales pressure</li>
-      </ul>
+      <p class="audit-eyebrow">Free &mdash; No Obligation</p>
+      <h2 class="section-heading">Book your<br/>free<br/><em>Practice<br/>Audit.</em></h2>
+      <p class="audit-desc">A 30-minute conversation. We map your admin bottlenecks, show you exactly what can be automated, and give you an honest assessment of what it is worth.</p>
     </div>
-    <div>
-      <form class="audit-form" name="audit" method="POST" action="https://formspree.io/f/mvzdokqv">
-        <p class="form-heading">Let's talk.</p>
-        <div class="form-row">
+    <ul class="audit-checklist">
+      <li>Referral and intake workflow review</li>
+      <li>Time and cost analysis of manual processes</li>
+      <li>Clear automation roadmap, ready to act on</li>
+      <li>No lock-in, no obligation, no sales pressure</li>
+    </ul>
+  </div>
+  <div class="audit-right">
+    <p class="form-eyebrow">Get in touch</p>
+    <form class="audit-form" id="auditForm">
+      <div id="formFields">
+        <div class="form-row-grid">
           <input type="text" name="name" placeholder="Your name" required />
           <input type="text" name="practice" placeholder="Practice name" required />
         </div>
-        <input type="email" name="email" placeholder="Email address" required />
-        <input type="tel" name="phone" placeholder="Phone number (optional)" />
-        <select name="size" required>
-          <option value="" disabled selected>Practice size</option>
-          <option>Solo practitioner</option>
-          <option>2–5 clinicians</option>
-          <option>6–15 clinicians</option>
-          <option>15+ clinicians</option>
-        </select>
-        <select name="pain" required>
-          <option value="" disabled selected>Biggest admin headache</option>
-          <option>Referral processing</option>
-          <option>Appointment reminders / no-shows</option>
-          <option>NDIS / insurance paperwork</option>
-          <option>Staff onboarding</option>
-          <option>Something else</option>
-        </select>
-        <button type="submit" class="btn-submit">Book My Free Audit →</button>
-        <p class="form-note">We respond within one business day. Based in Melbourne, serving practices Australia-wide.</p>
-      </form>
-    </div>
+        <div class="form-field">
+          <input type="email" name="email" placeholder="Email address" required />
+        </div>
+        <div class="form-field">
+          <input type="tel" name="phone" placeholder="Phone number (optional)" />
+        </div>
+        <div class="form-field">
+          <select name="size" required>
+            <option value="" disabled selected>Practice size</option>
+            <option>Solo practitioner</option>
+            <option>2&ndash;5 clinicians</option>
+            <option>6&ndash;15 clinicians</option>
+            <option>15+ clinicians</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <select name="pain" required>
+            <option value="" disabled selected>Biggest admin headache</option>
+            <option>Referral processing</option>
+            <option>Appointment reminders / no-shows</option>
+            <option>NDIS / insurance paperwork</option>
+            <option>Staff onboarding</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Book My Free Audit &rarr;</button>
+        <p class="form-note">We respond within one business day &mdash; Melbourne based, serving practices Australia-wide.</p>
+      </div>
+      <div class="success-block" id="formSuccess">
+        <h3>You are booked in.</h3>
+        <p>We will be in touch within one business day to confirm your audit time. Check your inbox &mdash; including spam just in case.</p>
+      </div>
+    </form>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <a href="#" class="logo">Admin<span>Zero</span></a>
-  <p>© 2025 AdminZero · Melbourne, Australia · <a href="/cdn-cgi/l/email-protection#2149444d4d4e6140454c484f5b44534e0f424e4c0f4054"><span class="__cf_email__" data-cfemail="d6beb3babab996b7b2bbbfb8acb3a4b9f8b5b9bbf8b7a3">[email&#160;protected]</span></a></p>
+  <p class="footer-left">&copy; 2025 AdminZero Pty Ltd &mdash; Melbourne, Australia</p>
+  <a href="#" class="footer-logo">Admin<em style="font-style:italic;">Zero</em></a>
+  <div class="footer-right">
+    <a href="mailto:djatadminzero@gmail.com">djatadminzero@gmail.com</a>
+  </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
+<script>
+  document.getElementById('auditForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      var response = await fetch('https://formspree.io/f/mvzdokqv', {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        document.getElementById('formFields').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Something went wrong, please try again';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Something went wrong, please try again';
+      btn.disabled = false;
+    }
+  });
+
+  var reveals = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e, i) {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
         io.unobserve(e.target);
       }
     });
   }, { threshold: 0.08 });
-  reveals.forEach(el => io.observe(el));
+  reveals.forEach(function(el) { io.observe(el); });
 </script>
 </body>
 </html>
