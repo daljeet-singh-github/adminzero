@@ -1,0 +1,43 @@
+The Allied Health Practice Automation Blueprint
+
+How to reduce referral admin, document handling, follow-ups and spreadsheet tracking using Microsoft 365.
+
+AdminZero helps allied health practices automate referral intake, document handling, follow-ups and admin tracking using the Microsoft 365 tools they may already have.
+
+1. Start with referral intake
+
+Map how referrals arrive, where documents are stored, who checks missing information and how status is tracked. The first automation should remove repeated copying, saving and chasing before adding anything complex.
+
+2. Capture
+
+Use a clear form or structured intake path so the right information is collected at the start.
+
+3. Organise
+
+Save documents into predictable SharePoint locations with consistent naming and referral references.
+
+4. Track
+
+Use Microsoft Lists or a dashboard to show what is new, pending information, in progress, completed or overdue.
+
+5. Notify
+
+Send the right internal notifications when a referral arrives, changes status or needs attention.
+
+6. Follow up
+
+Flag missing information and prepare follow-up emails so admin staff are not manually checking every item.
+
+7. Review AI output
+
+AI can help prefill details from documents, but extracted information should be reviewed before use. AI should assist admin review, not make clinical or business decisions.
+
+Suggested starting point
+
+Start small with one workflow. Expand only when it saves real time.
+
+Get a Free Practice Audit
+
+https://adminzero.com.au/#audit
+
+No sales call required. Written audit summary delivered by email.

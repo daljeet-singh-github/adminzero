@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <title>Admin Waste Calculator - AdminZero</title>
+  <meta name="description" content="Estimate hours lost and monthly admin cost from manual referral intake, missing information follow-ups and spreadsheet tracking." />
+  <link rel="canonical" href="https://adminzero.com.au/admin-waste-calculator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://adminzero.com.au/admin-waste-calculator.html" />
+  <meta property="og:title" content="Admin Waste Calculator" />
+  <meta property="og:description" content="Estimate how much time manual admin may be costing your practice each month." />
+  <meta property="og:image" content="https://adminzero.com.au/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://adminzero.com.au/og-image.png" />
+  <script src="analytics.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&amp;family=DM+Mono:wght@400;500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <style>
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 3rem;
+      align-items: start;
+    }
+    .calc-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem 2rem;
+    }
+    .calc-field {
+      border-top: 1px solid var(--light);
+      padding-top: 1rem;
+    }
+    .calc-field label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .calc-field input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--ink);
+      background: transparent;
+      font-family: 'Jost', sans-serif;
+      font-size: 1.6rem;
+      color: var(--ink);
+      padding: 0.35rem 0;
+    }
+    .calc-field input:focus {
+      outline: 2px solid var(--ink);
+      outline-offset: 4px;
+    }
+    .result-panel {
+      border-top: 2px solid var(--ink);
+      padding-top: 1rem;
+      position: sticky;
+      top: 80px;
+    }
+    .result-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .result-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.2rem;
+    }
+    @media (max-width: 900px) {
+      .calculator-grid,
+      .calc-form { grid-template-columns: 1fr; }
+      .result-panel { position: static; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Admin Waste Calculator",
+    "url": "https://adminzero.com.au/admin-waste-calculator.html",
+    "description": "Estimate hours lost and monthly admin cost from manual referral admin."
+  }
+  </script>
+</head>
+<body>
+  <nav><div class="nav-left"><a href="index.html" class="nav-link">Home</a><a href="referral-intake-automation.html" class="nav-link">Referral Intake</a></div><a href="index.html" class="nav-logo">Admin<em>Zero</em></a><a href="index.html#audit" class="nav-cta">Get a Free Practice Audit</a></nav>
+  <main>
+    <header class="hero">
+      <div class="hero-grid">
+        <div><p class="eyebrow">Admin Waste Calculator</p><h1>Estimate your hidden admin cost.</h1></div>
+        <aside><p>Use rough numbers to estimate how much time manual referral admin, missing information follow-ups and spreadsheet tracking may be costing each month.</p><a class="btn-primary" href="index.html#audit">Get a Free Practice Audit &rarr;</a><p class="note">No sales call required.</p></aside>
+      </div>
+    </header>
+    <section class="section">
+      <div class="calculator-grid">
+        <form class="calc-form" id="adminWasteCalculator">
+          <div class="calc-field"><label for="referralsPerWeek">Referrals per week</label><input id="referralsPerWeek" type="number" min="0" value="25" /></div>
+          <div class="calc-field"><label for="minutesPerReferral">Minutes spent per referral</label><input id="minutesPerReferral" type="number" min="0" value="15" /></div>
+          <div class="calc-field"><label for="hourlyCost">Admin hourly cost in AUD</label><input id="hourlyCost" type="number" min="0" value="40" /></div>
+          <div class="calc-field"><label for="missingInfoMinutes">Missing info minutes per week</label><input id="missingInfoMinutes" type="number" min="0" value="120" /></div>
+          <div class="calc-field"><label for="noShowsPerWeek">No-shows per week, optional</label><input id="noShowsPerWeek" type="number" min="0" value="0" /></div>
+          <div class="calc-field"><label for="spreadsheetMinutes">Spreadsheet update minutes per week</label><input id="spreadsheetMinutes" type="number" min="0" value="90" /></div>
+        </form>
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-number" id="hoursLost">0 hrs</div>
+          <p class="result-label">Estimated hours lost per week</p>
+          <div class="result-number" id="monthlyCost">$0</div>
+          <p class="result-label">Estimated monthly admin cost</p>
+          <h3>Suggested automation opportunities</h3>
+          <ul class="clean-list" id="suggestedOpportunities"></ul>
+          <a class="btn-primary" href="index.html#audit">Get a Free Practice Audit &rarr;</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p class="footer-left">&copy; 2025 AdminZero Pty Ltd &mdash; Melbourne, Australia</p>
+    <div class="footer-right">
+      <span class="footer-summary">AdminZero helps allied health practices in Australia automate referral intake, document handling, follow-ups and admin tracking using Microsoft 365.</span>
+      <a href="mailto:djatadminzero@gmail.com">djatadminzero@gmail.com</a>
+      <br />
+      <a href="referral-intake-automation.html">Referral Intake Automation</a> / <a href="free-practice-admin-audit.html">Free Practice Admin Audit</a>
+      <br />
+      <a href="sitemap.html">Sitemap</a> / <a href="privacy.html">Privacy</a> / <a href="terms.html">Terms</a>
+      <a href="index.html#audit" class="footer-cta">Get a Free Practice Audit</a>
+    </div>
+  </footer>
+  <script>
+    var fields = ['referralsPerWeek', 'minutesPerReferral', 'hourlyCost', 'missingInfoMinutes', 'noShowsPerWeek', 'spreadsheetMinutes'].map(function(id) {
+      return document.getElementById(id);
+    });
+    function value(id) {
+      return Number(document.getElementById(id).value) || 0;
+    }
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 }).format(amount);
+    }
+    function updateCalculator() {
+      var referralHours = value('referralsPerWeek') * value('minutesPerReferral') / 60;
+      var followUpHours = value('missingInfoMinutes') / 60;
+      var spreadsheetHours = value('spreadsheetMinutes') / 60;
+      var totalHours = referralHours + followUpHours + spreadsheetHours;
+      var monthlyCost = totalHours * value('hourlyCost') * 4.33;
+      document.getElementById('hoursLost').textContent = totalHours.toFixed(1) + ' hrs';
+      document.getElementById('monthlyCost').textContent = formatCurrency(monthlyCost);
+      var suggestions = [
+        'Referral intake capture and status tracking',
+        'Missing information flags and follow-up reminders',
+        'Automated document storage and naming'
+      ];
+      if (value('noShowsPerWeek') > 0) suggestions.push('Appointment reminder and waitlist workflow review');
+      document.getElementById('suggestedOpportunities').innerHTML = suggestions.map(function(item) {
+        return '<li>' + item + '</li>';
+      }).join('');
+    }
+    fields.forEach(function(field) { field.addEventListener('input', updateCalculator); });
+    updateCalculator();
+  </script>
+</body>
+</html>

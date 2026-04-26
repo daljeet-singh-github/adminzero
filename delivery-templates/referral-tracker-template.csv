@@ -1,0 +1,2 @@
+referral_id,received_date,client_name,referrer,referral_source,status,assigned_person,missing_information,next_action,due_date,document_link,notes
+REF-1001,2026-04-01,Sample Client,Sample Referrer,Email,New,Admin Team,,Review referral,2026-04-03,https://example.com/sample-document,Example row only

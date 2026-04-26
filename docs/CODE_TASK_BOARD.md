@@ -147,48 +147,48 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 
 ### Email And Sales Templates
 
-- [ ] Create `/templates/audit-response-template.md`.
-- [ ] Create `/templates/audit-follow-up-template.md`.
-- [ ] Create `/templates/quote-template.md`.
-- [ ] Create `/templates/kickoff-email-template.md`.
-- [ ] Create `/templates/handover-email-template.md`.
-- [ ] Create `/templates/missing-information-email-template.md`.
-- [ ] Create `/templates/referral-confirmation-email-template.md`.
+- [x] Create `/templates/audit-response-template.md`.
+- [x] Create `/templates/audit-follow-up-template.md`.
+- [x] Create `/templates/quote-template.md`.
+- [x] Create `/templates/kickoff-email-template.md`.
+- [x] Create `/templates/handover-email-template.md`.
+- [x] Create `/templates/missing-information-email-template.md`.
+- [x] Create `/templates/referral-confirmation-email-template.md`.
 
 ### Delivery Templates
 
-- [ ] Create `/delivery-templates/referral-tracker-template.csv`.
-- [ ] Create `/delivery-templates/intake-form-template.md`.
-- [ ] Create `/delivery-templates/sharepoint-folder-structure.md`.
-- [ ] Create `/delivery-templates/power-automate-naming-convention.md`.
-- [ ] Create `/delivery-templates/dashboard-layout-template.md`.
-- [ ] Create `/delivery-templates/implementation-checklist.md`.
-- [ ] Create `/delivery-templates/ai-limitations-note.md`.
+- [x] Create `/delivery-templates/referral-tracker-template.csv`.
+- [x] Create `/delivery-templates/intake-form-template.md`.
+- [x] Create `/delivery-templates/sharepoint-folder-structure.md`.
+- [x] Create `/delivery-templates/power-automate-naming-convention.md`.
+- [x] Create `/delivery-templates/dashboard-layout-template.md`.
+- [x] Create `/delivery-templates/implementation-checklist.md`.
+- [x] Create `/delivery-templates/ai-limitations-note.md`.
 
 ---
 
 ## Later Build Items
 
-- [ ] Build `admin-waste-calculator.html`.
-- [ ] Add calculator inputs for referrals, minutes, admin cost, missing info time, no-shows and spreadsheet updates.
-- [ ] Add calculator outputs for hours lost, monthly admin cost and suggested automation opportunities.
-- [ ] Add Free Practice Audit CTA after calculator results.
-- [ ] Create `allied-health-practice-automation-blueprint.html`.
-- [ ] Add downloadable Automation Blueprint PDF later.
-- [ ] Add example case study section after demos or client work exists.
+- [x] Build `admin-waste-calculator.html`.
+- [x] Add calculator inputs for referrals, minutes, admin cost, missing info time, no-shows and spreadsheet updates.
+- [x] Add calculator outputs for hours lost, monthly admin cost and suggested automation opportunities.
+- [x] Add Free Practice Audit CTA after calculator results.
+- [x] Create `allied-health-practice-automation-blueprint.html`.
+- [x] Add downloadable Automation Blueprint PDF later.
+- [x] Add example case study section after demos or client work exists.
 
 ---
 
 ## Technical Maintenance
 
-- [ ] Remove unused CSS variables if still unused.
-- [ ] Refactor awkward `col-block` spacing.
-- [ ] **Added by Codex:** Consider moving shared CSS into `styles.css` once multiple pages exist.
-- [ ] **Added by Codex:** Add favicon and app icons if missing.
-- [ ] **Added by Codex:** Add `404.html`.
-- [ ] Validate HTML after major page changes.
-- [ ] Check mobile layout after each major section addition.
-- [ ] Run accessibility checks for forms, headings, contrast, focus states and keyboard navigation.
+- [x] Remove unused CSS variables if still unused.
+- [x] Refactor awkward `col-block` spacing.
+- [x] **Added by Codex:** Consider moving shared CSS into `styles.css` once multiple pages exist. Existing shared page CSS lives in `assets/site.css`; homepage-specific CSS remains inline.
+- [x] **Added by Codex:** Add favicon and app icons if missing. Added SVG favicon.
+- [x] **Added by Codex:** Add `404.html`.
+- [x] Validate HTML after major page changes.
+- [x] Check mobile layout after each major section addition.
+- [x] Run accessibility checks for forms, headings, contrast, focus states and keyboard navigation.
 - [ ] Verify GitHub Pages deployment after each release.
 - [ ] Verify the live form still submits after form changes.
 

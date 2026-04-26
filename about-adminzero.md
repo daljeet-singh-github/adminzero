@@ -66,6 +66,15 @@ AdminZero reviews the current referral or admin workflow.
 The practice receives a written summary by email.
 No sales call is required.
 
+## Public Resources
+
+- Home: https://adminzero.com.au/
+- Referral Intake Automation: https://adminzero.com.au/referral-intake-automation.html
+- Free Practice Admin Audit: https://adminzero.com.au/free-practice-admin-audit.html
+- Admin Waste Calculator: https://adminzero.com.au/admin-waste-calculator.html
+- Allied Health Practice Automation Blueprint: https://adminzero.com.au/allied-health-practice-automation-blueprint.html
+- Example Workflow Case Studies: https://adminzero.com.au/example-case-studies.html
+
 ## Privacy And AI Boundaries
 
 Users should remove or hide sensitive client information before sharing examples.

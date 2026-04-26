@@ -29,6 +29,9 @@ AdminZero is for allied health practices and service-based providers in Australi
 - Home: https://adminzero.com.au/
 - Referral Intake Automation: https://adminzero.com.au/referral-intake-automation.html
 - Free Practice Audit: https://adminzero.com.au/free-practice-admin-audit.html
+- Admin Waste Calculator: https://adminzero.com.au/admin-waste-calculator.html
+- Allied Health Practice Automation Blueprint: https://adminzero.com.au/allied-health-practice-automation-blueprint.html
+- Example Workflow Case Studies: https://adminzero.com.au/example-case-studies.html
 - Privacy Policy: https://adminzero.com.au/privacy.html
 - Terms: https://adminzero.com.au/terms.html
 - Human-readable sitemap: https://adminzero.com.au/sitemap.html

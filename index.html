@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <title>AdminZero - Referral Intake Automation for Allied Health</title>
   <meta name="description" content="AdminZero helps allied health practices automate referral intake, document handling, follow-ups and admin tracking using Microsoft 365 tools they already have." />
   <link rel="canonical" href="https://adminzero.com.au/" />
@@ -165,7 +166,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&amp;family=DM+Mono:wght@400;500&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -426,14 +427,13 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       border-bottom: 2px solid var(--ink);
+      padding: 0 5vw;
     }
     .col-block {
       padding: 3rem 3rem 3rem 0;
       border-right: 1px solid var(--light);
-      margin-left: 5vw;
     }
-    .col-block:first-child { margin-left: 5vw; }
-    .col-block:last-child { border-right: none; margin-right: 5vw; }
+    .col-block:last-child { border-right: none; }
     .col-label {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
@@ -996,7 +996,7 @@
       .problem-copy { border-right: none; border-bottom: 2px solid var(--ink); padding: 3rem 5vw; }
       .problem-list { padding: 2.5rem 5vw; }
       .columns-section { grid-template-columns: 1fr; }
-      .col-block { border-right: none; border-bottom: 1px solid var(--light); margin-left: 5vw; margin-right: 5vw; padding: 2.5rem 0; }
+      .col-block { border-right: none; border-bottom: 1px solid var(--light); padding: 2.5rem 0; }
       .how-section { grid-template-columns: 1fr; }
       .how-label-col { border-right: none; border-bottom: 1px solid var(--ink); padding: 3rem 5vw; }
       .how-steps { grid-template-columns: 1fr; padding: 3rem 5vw; gap: 2.5rem; }
