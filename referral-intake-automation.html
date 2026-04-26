@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Referral Intake Automation for Allied Health Practices - AdminZero</title>
+  <meta name="description" content="Referral intake automation for allied health practices using Microsoft 365 tools including Outlook, SharePoint, Forms, Power Automate, Lists and Teams." />
+  <link rel="canonical" href="https://adminzero.com.au/referral-intake-automation.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://adminzero.com.au/referral-intake-automation.html" />
+  <meta property="og:title" content="Referral Intake Automation for Allied Health Practices" />
+  <meta property="og:description" content="Capture referrals, organise documents, track status, flag missing information and notify the right people using Microsoft 365." />
+  <meta property="og:image" content="https://adminzero.com.au/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Referral Intake Automation for Allied Health Practices" />
+  <meta name="twitter:description" content="A practical Microsoft 365 workflow for allied health referral intake." />
+  <meta name="twitter:image" content="https://adminzero.com.au/og-image.png" />
+  <script src="analytics.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Mono:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Referral Intake Automation for Allied Health Practices",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "AdminZero",
+        "url": "https://adminzero.com.au/"
+      },
+      "areaServed": "Australia",
+      "serviceType": "Referral intake automation",
+      "description": "A Microsoft 365 referral intake workflow that captures referrals, organises documents, tracks status, flags missing information and notifies the right people."
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is referral intake automation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Referral intake automation captures referral information, organises documents, tracks status, flags missing information and notifies the right people."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we need to book a call?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. You can start with the free written audit. If a call is useful later, it can be arranged, but it is not required to begin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI read referral documents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In some cases, yes. AI can assist with extracting details from referral documents, but the output should be reviewed before being used."
+          }
+        }
+      ]
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --ink:#0a0a0a; --paper:#f4f1eb; --mid:#888; --light:#d4d0c8; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Jost', sans-serif; background:var(--paper); color:var(--ink); font-size:16px; line-height:1.65; overflow-x:hidden; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:10; height:56px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:0 5vw; background:var(--paper); border-bottom:2px solid var(--ink); }
+    .nav-left { display:flex; gap:2rem; }
+    .nav-link, .nav-cta, .eyebrow, .text-link, .stat, .footer-left, .footer-right { font-family:'DM Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; }
+    .nav-link, .text-link, .footer-right a { color:var(--ink); text-decoration:none; }
+    .nav-logo, h1, h2, h3 { font-family:'Playfair Display', serif; letter-spacing:-0.02em; color:var(--ink); }
+    .nav-logo { font-weight:900; font-size:1.15rem; text-align:center; text-decoration:none; }
+    .nav-logo em, h1 em, h2 em { font-style:italic; }
+    .nav-cta { justify-self:end; color:var(--paper); background:var(--ink); text-decoration:none; padding:0.45rem 1rem; }
+    main { padding-top:56px; }
+    .hero { padding:4rem 5vw 3rem; border-bottom:2px solid var(--ink); }
+    .hero-grid { display:grid; grid-template-columns:1fr 340px; gap:3rem; align-items:end; }
+    .eyebrow { color:var(--mid); margin-bottom:1rem; }
+    h1 { font-weight:900; font-size:clamp(3.4rem, 8vw, 7.5rem); line-height:0.92; max-width:980px; }
+    .hero p, .section-copy, .card p, .faq p, li { color:#444; font-weight:300; }
+    .hero aside { border-left:2px solid var(--ink); padding-left:2rem; }
+    .btn-primary { display:inline-block; margin-top:1.5rem; font-family:'DM Mono', monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--paper); background:var(--ink); text-decoration:none; padding:0.75rem 1.5rem; }
+    .note { margin-top:0.85rem; font-family:'DM Mono', monospace; font-size:0.62rem; letter-spacing:0.06em; color:var(--mid); text-transform:uppercase; }
+    .section { padding:4rem 5vw; border-bottom:2px solid var(--ink); }
+    .section-header { display:grid; grid-template-columns:280px 1fr; gap:4rem; margin-bottom:2.5rem; }
+    h2 { font-weight:900; font-size:2.2rem; line-height:1.1; }
+    h3 { font-weight:700; font-size:1.2rem; line-height:1.2; margin-bottom:0.85rem; }
+    .section-copy { max-width:720px; font-size:0.95rem; line-height:1.8; }
+    .grid-2, .grid-3 { display:grid; border-top:1px solid var(--light); border-left:1px solid var(--light); }
+    .grid-2 { grid-template-columns:1fr 1fr; }
+    .grid-3 { grid-template-columns:repeat(3, 1fr); }
+    .card, .faq { padding:1.5rem; border-right:1px solid var(--light); border-bottom:1px solid var(--light); }
+    .workflow { font-family:'DM Mono', monospace; font-size:0.72rem; letter-spacing:0.02em; line-height:1.9; }
+    .demo-status-row { display:grid; grid-template-columns:1fr auto; gap:1rem; border-top:1px solid var(--light); padding:0.7rem 0; }
+    ul { list-style:none; display:grid; gap:0.7rem; }
+    li { border-top:1px solid var(--light); padding-top:0.7rem; }
+    .text-link { display:inline-block; margin-top:1.5rem; border-bottom:1px solid var(--ink); padding-bottom:0.2rem; }
+    footer { display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding:1.25rem 5vw; border-top:2px solid var(--ink); }
+    .footer-left, .footer-right { color:var(--mid); }
+    .footer-right { text-align:right; }
+    .footer-summary { display:block; margin-bottom:0.65rem; font-family:'Jost', sans-serif; font-size:0.82rem; letter-spacing:0; line-height:1.6; text-transform:none; color:#444; }
+    .footer-cta { display:block; margin-top:0.85rem; color:var(--ink) !important; text-transform:uppercase; }
+    @media (max-width:900px) { nav { grid-template-columns:1fr auto; } .nav-left { display:none; } .hero-grid, .section-header, .grid-2, .grid-3 { grid-template-columns:1fr; } .hero aside { border-left:0; border-top:1px solid var(--light); padding:1.5rem 0 0; } footer { grid-template-columns:1fr; } .footer-right { text-align:left; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+    <a href="index.html" class="nav-logo">Admin<em>Zero</em></a>
+    <a href="index.html#audit" class="nav-cta">Get a Free Practice Audit</a>
+  </nav>
+  <main>
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Referral Intake Automation</p>
+          <h1>Referral Intake Automation for Allied Health Practices</h1>
+        </div>
+        <aside>
+          <p>AdminZero helps allied health practices capture referrals, organise documents, track status, flag missing information and notify the right people using Microsoft 365.</p>
+          <a class="btn-primary" href="index.html#audit">Get a Free Practice Audit &rarr;</a>
+          <p class="note">No sales call required.</p>
+        </aside>
+      </div>
+    </header>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">What It Is</p>
+          <h2>A cleaner intake workflow.</h2>
+        </div>
+        <p class="section-copy">Referral intake automation turns scattered referral emails, PDFs, forms and attachments into a trackable workflow. The goal is simple: capture the referral, save the documents, flag missing information and make the status visible.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Why It Matters</p>
+          <h2>Manual intake slows practices down.</h2>
+        </div>
+        <p class="section-copy">When admin staff copy details by hand, save documents manually, chase missing information and update spreadsheets, referral processing becomes slower than it needs to be.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card"><h3>Copied details</h3><p>Referral details are copied from PDFs, emails and attachments into trackers or practice systems.</p></article>
+        <article class="card"><h3>Manual document handling</h3><p>Documents are saved, named and moved by hand, which makes consistency hard.</p></article>
+        <article class="card"><h3>No clear pipeline</h3><p>Teams rely on inboxes and spreadsheets instead of a shared status view.</p></article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Before / After</p>
+          <h2>From messy intake to clear workflow.</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card"><h3>Before AdminZero</h3><p class="workflow">Referral email arrives &rarr; admin downloads attachment &rarr; reads PDF &rarr; copies details &rarr; creates folder &rarr; updates spreadsheet &rarr; emails team &rarr; chases missing info</p></article>
+        <article class="card"><h3>After AdminZero</h3><p class="workflow">Referral submitted &rarr; details captured &rarr; document saved &rarr; missing info flagged &rarr; status updated &rarr; team notified &rarr; referral visible in tracker</p></article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">What We Build</p>
+          <h2>Practical Microsoft 365 workflows.</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card"><h3>Online referral form</h3><p>Capture the details your admin team needs upfront.</p></article>
+        <article class="card"><h3>Document storage</h3><p>Save files into a consistent SharePoint folder structure.</p></article>
+        <article class="card"><h3>Status tracker</h3><p>Track new, pending, in progress, completed and overdue referrals.</p></article>
+        <article class="card"><h3>Missing information flags</h3><p>Make missing details visible before they slow the whole process.</p></article>
+        <article class="card"><h3>Internal notifications</h3><p>Notify the right people when a referral changes status.</p></article>
+        <article class="card"><h3>Optional AI prefill</h3><p>AI can prepare extracted details for admin review, not make decisions on its own.</p></article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Tools Used</p>
+          <h2>Built inside tools your team may already have.</h2>
+        </div>
+        <p class="section-copy">Built for allied health practices using Microsoft 365 tools your team may already use, including Outlook, SharePoint, Forms, Power Automate, Lists and Teams.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Example Workflows</p>
+          <h2>Fake-data demos.</h2>
+        </div>
+        <p class="section-copy">These examples use fictional clinic and client details. They show the type of admin flow AdminZero can build, not real client results.</p>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <p class="stat">Demo 01</p>
+          <h3>Referral intake automation</h3>
+          <p class="workflow">Referral submitted &rarr; file uploaded &rarr; record created &rarr; document saved &rarr; team notified &rarr; status visible</p>
+          <div class="demo-status-row"><span>REF-1024 - Sample Client</span><span class="stat">New</span></div>
+          <div class="demo-status-row"><span>Northside Allied Health</span><span class="stat">Pending</span></div>
+        </article>
+        <article class="card">
+          <p class="stat">Demo 05</p>
+          <h3>AI document prefill</h3>
+          <p class="workflow">Uploaded referral document &rarr; key details extracted &rarr; admin reviews &rarr; form prefilled</p>
+          <div class="demo-status-row"><span>Extracted details ready</span><span class="stat">Review</span></div>
+          <div class="demo-status-row"><span>Output should be reviewed before use</span><span class="stat">Note</span></div>
+        </article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Starting Options</p>
+          <h2>Start with the audit.</h2>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card"><p class="stat">Free</p><h3>Free Practice Admin Audit</h3><p>A written review with 3&ndash;5 practical opportunities.</p></article>
+        <article class="card"><p class="stat">From $950</p><h3>Quick Win Automation</h3><p>One repetitive admin process automated in 7&ndash;10 days.</p></article>
+        <article class="card"><p class="stat">From $3,500</p><h3>Referral Intake System</h3><p>A complete referral workflow for capture, documents, status and notifications.</p></article>
+      </div>
+    </section>
+    <section class="section" id="faq">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2>Common questions.</h2>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="faq"><h3>Do we need a new system?</h3><p>Usually no. AdminZero starts with Microsoft 365 tools many practices already use.</p></article>
+        <article class="faq"><h3>Do we need to book a call?</h3><p>No. You can start with the free written audit. A call can be arranged later if useful.</p></article>
+        <article class="faq"><h3>Can AI read referral documents?</h3><p>In some cases, yes. Extracted information should be reviewed before use.</p></article>
+        <article class="faq"><h3>Can we start small?</h3><p>Yes. Start with one workflow. Expand only when it saves real time.</p></article>
+      </div>
+      <a class="btn-primary" href="index.html#audit">Get a Free Practice Audit &rarr;</a>
+      <p class="note">No sales call required.</p>
+    </section>
+  </main>
+  <footer>
+    <p class="footer-left">&copy; 2025 AdminZero Pty Ltd &mdash; Melbourne, Australia</p>
+    <div class="footer-right">
+      <span class="footer-summary">AdminZero helps allied health practices in Australia automate referral intake, document handling, follow-ups and admin tracking using Microsoft 365.</span>
+      <a href="mailto:djatadminzero@gmail.com">djatadminzero@gmail.com</a>
+      <br />
+      <a href="referral-intake-automation.html">Referral Intake Automation</a> / <a href="free-practice-admin-audit.html">Free Practice Admin Audit</a>
+      <br />
+      <a href="sitemap.html">Sitemap</a> / <a href="privacy.html">Privacy</a> / <a href="terms.html">Terms</a>
+      <a href="index.html#audit" class="footer-cta">Get a Free Practice Audit</a>
+    </div>
+  </footer>
+</body>
+</html>

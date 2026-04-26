@@ -27,7 +27,7 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 - [x] Add optional upload field for sample forms, screenshots or process documents.
 - [x] Add upload privacy note asking users to remove sensitive client information.
 - [x] Add clear post-submit confirmation message.
-- [x] Connect existing nav, hero and footer CTAs to the audit form. Package, landing page and blog CTAs will be connected when those sections/pages exist.
+- [x] Connect existing nav, hero, footer, package and landing page CTAs to the audit form. Blog CTAs will be connected when blog pages exist.
 - [x] **Added by Codex:** Create a dedicated thank-you page or trackable success state for form submissions.
 - [x] **Added by Codex:** Add hidden form fields for page URL, page title, referrer and UTM attribution.
 - [x] **Added by Codex:** Add honeypot spam protection.
@@ -35,12 +35,12 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 
 ### Packages And Trust
 
-- [ ] Add four package cards: Free Audit, Quick Win Automation, Referral Intake System, Care Plan.
-- [ ] Add pricing from the plan: Free, from $950, from $3,500, from $300/month.
-- [ ] Add "Start small with one workflow. Expand only when it saves real time."
-- [ ] Add scope exclusions section or link.
-- [ ] Add FAQ section using the supplied questions and answers.
-- [ ] Add AI limitation note wherever AI document extraction is mentioned.
+- [x] Add four package cards: Free Audit, Quick Win Automation, Referral Intake System, Care Plan.
+- [x] Add pricing from the plan: Free, from $950, from $3,500, from $300/month.
+- [x] Add "Start small with one workflow. Expand only when it saves real time."
+- [x] Add scope exclusions section or link.
+- [x] Add FAQ section using the supplied questions and answers.
+- [x] Add AI limitation note wherever AI document extraction is mentioned.
 
 ---
 
@@ -48,25 +48,25 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 
 ### Required Pages
 
-- [ ] Create `privacy.html`.
-- [ ] Create `terms.html`.
-- [ ] Create `referral-intake-automation.html`.
-- [ ] Link the referral intake landing page from homepage service sections, package cards and footer.
-- [ ] Add Free Practice Audit CTA to the bottom of each new page.
+- [x] Create `privacy.html`.
+- [x] Create `terms.html`.
+- [x] Create `referral-intake-automation.html`.
+- [x] Link the referral intake landing page from homepage service sections, package cards and footer.
+- [x] Add Free Practice Audit CTA to the bottom of each new page.
 
 ### Referral Intake Landing Page
 
-- [ ] Add hero section.
-- [ ] Add "What referral intake automation is" section.
-- [ ] Add "Why manual intake slows practices down" section.
-- [ ] Add common problems section.
-- [ ] Add before/after workflow.
-- [ ] Add "What AdminZero builds" section.
-- [ ] Add Microsoft 365 tools used section.
-- [ ] Add optional AI document prefill section.
-- [ ] Add packages or starting options.
-- [ ] Add FAQ.
-- [ ] Add final Free Practice Audit CTA with "No sales call required."
+- [x] Add hero section.
+- [x] Add "What referral intake automation is" section.
+- [x] Add "Why manual intake slows practices down" section.
+- [x] Add common problems section.
+- [x] Add before/after workflow.
+- [x] Add "What AdminZero builds" section.
+- [x] Add Microsoft 365 tools used section.
+- [x] Add optional AI document prefill section.
+- [x] Add packages or starting options.
+- [x] Add FAQ.
+- [x] Add final Free Practice Audit CTA with "No sales call required."
 
 ---
 
@@ -74,53 +74,72 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 
 ### Tracking
 
-- [ ] Install GA4.
-- [ ] Install Microsoft Clarity.
-- [ ] Add Google Search Console verification.
-- [ ] Track audit CTA clicks.
-- [ ] Track audit form starts.
-- [ ] Track audit form submissions.
-- [ ] Track traffic source and page source for form submissions.
+- [ ] Install GA4. Tracking hook added, needs real GA4 Measurement ID.
+- [ ] Install Microsoft Clarity. Tracking hook added, needs real Clarity Project ID.
+- [ ] Add Google Search Console verification. Hook added, needs real verification token.
+- [x] Track audit CTA clicks.
+- [x] Track audit form starts.
+- [x] Track audit form submissions.
+- [x] Track traffic source and page source for form submissions.
 
 ### Search Basics
 
-- [ ] **Added by Codex:** Create `sitemap.xml`.
-- [ ] **Added by Codex:** Create `robots.txt` pointing to the sitemap.
-- [ ] Update homepage title and meta description.
-- [ ] Add unique title and meta description to every new page.
-- [ ] Add canonical URLs to all public pages.
-- [ ] Add OG title, description and image tags to all public pages.
-- [ ] Add LocalBusiness or ProfessionalService JSON-LD schema.
-- [ ] Add FAQ schema where FAQ appears.
-- [ ] Add service schema on service pages.
+- [x] **Added by Codex:** Create `sitemap.xml`.
+- [x] **Added by Codex:** Create `robots.txt` pointing to the sitemap.
+- [x] Update homepage title and meta description.
+- [x] Add unique title and meta description to every new page.
+- [x] Add canonical URLs to all public pages.
+- [x] Add OG title, description and image tags to all public pages.
+- [x] Add LocalBusiness or ProfessionalService JSON-LD schema.
+- [x] Add FAQ schema where FAQ appears.
+- [x] Add service schema on service pages.
 
 ---
 
 ## Demo And Proof Assets
 
-- [ ] Create Demo 1: Referral intake automation.
-- [ ] Create Demo 2: Email attachment automation.
-- [ ] Create Demo 3: Missing information workflow.
-- [ ] Create Demo 4: Admin dashboard.
-- [ ] Create Demo 5: AI document prefill.
-- [ ] Add at least two demo examples to the homepage.
-- [ ] Add at least two demo examples to the referral intake landing page.
-- [ ] Clearly label fake/demo workflows as examples.
-- [ ] **Added by Codex:** Store site assets in `/assets/` instead of adding more files to the repo root.
-- [ ] Optimise demo screenshots and OG images before publishing.
+- [x] Create Demo 1: Referral intake automation.
+- [x] Create Demo 2: Email attachment automation.
+- [x] Create Demo 3: Missing information workflow.
+- [x] Create Demo 4: Admin dashboard.
+- [x] Create Demo 5: AI document prefill.
+- [x] Add at least two demo examples to the homepage.
+- [x] Add at least two demo examples to the referral intake landing page.
+- [x] Clearly label fake/demo workflows as examples.
+- [x] **Added by Codex:** Store site assets in `/assets/` instead of adding more files to the repo root.
+- [x] Optimise demo screenshots and OG images before publishing. No screenshot assets were created; existing OG image is already 1200x630 and 36 KB.
+
+---
+
+## AI Friendliness
+
+- [x] Create `llms.txt` with a concise AI-readable summary of AdminZero, target audience, services, main offer, key pages and contact/audit CTA.
+- [x] Create `company-profile.md` or `about-adminzero.md` with a clean Markdown profile covering company summary, services, audience, Microsoft 365 tools, packages, no-call audit process and privacy boundaries.
+- [x] Create `about.html` explaining AdminZero Pty Ltd, Melbourne location, allied health focus, Microsoft 365 automation focus and no-call audit process.
+- [x] Create `sitemap.html` with human-readable links to Home, Referral Intake Automation, Free Practice Audit, Privacy and Terms.
+- [x] Add or strengthen `Organization` schema.
+- [x] Add `WebSite` schema.
+- [x] Add `WebPage` schema to public pages.
+- [x] Add `BreadcrumbList` schema to public pages where useful.
+- [x] Add richer `Service` schema for referral intake automation.
+- [x] Add `Offer` schema for packages and starting prices.
+- [x] Add a short site summary near the homepage footer reinforcing AdminZero's audience, offer and Microsoft 365 positioning.
+- [x] Use descriptive internal link text for key pages, especially referral intake automation and the free practice audit.
+- [x] Keep AI/privacy boundaries explicit wherever AI is mentioned: AI assists admin review, does not make clinical decisions, and users should not upload sensitive client information unless specifically agreed.
+- [x] Review `robots.txt` after adding AI-readable files to ensure important public pages remain crawlable.
 
 ---
 
 ## SEO Content Pages
 
-- [ ] Create `stop-managing-referrals-email-spreadsheets.html`.
-- [ ] Create `microsoft-365-automation-allied-health.html`.
-- [ ] Create `ai-document-extraction-referral-forms-pdfs.html`.
-- [ ] Create `admin-tasks-allied-health-practices-can-automate.html`.
-- [ ] Create `free-practice-admin-audit.html`.
-- [ ] Add CTA to every SEO page.
-- [ ] Internally link each SEO page to the referral intake landing page.
-- [ ] Internally link each SEO page to the audit form or audit page.
+- [x] Create `stop-managing-referrals-email-spreadsheets.html`.
+- [x] Create `microsoft-365-automation-allied-health.html`.
+- [x] Create `ai-document-extraction-referral-forms-pdfs.html`.
+- [x] Create `admin-tasks-allied-health-practices-can-automate.html`.
+- [x] Create `free-practice-admin-audit.html`.
+- [x] Add CTA to every SEO page.
+- [x] Internally link each SEO page to the referral intake landing page.
+- [x] Internally link each SEO page to the audit form or audit page.
 
 ---
 

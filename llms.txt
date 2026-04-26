@@ -1,0 +1,52 @@
+# AdminZero
+
+AdminZero is a Melbourne-based practice automation consultancy for allied health practices in Australia.
+
+## What AdminZero Does
+
+AdminZero helps allied health practices automate referral intake, document handling, follow-ups and admin tracking using Microsoft 365 tools they may already have.
+
+The primary starting offer is referral intake automation using Microsoft 365.
+
+## Audience
+
+AdminZero is for allied health practices and service-based providers in Australia, including physiotherapy, occupational therapy, psychology, rehabilitation providers, NDIS-adjacent providers, case management providers and multidisciplinary clinics.
+
+## Main Services
+
+- Free Practice Admin Audit
+- Quick Win Automation
+- Referral Intake System
+- Practice Automation Care Plan
+- Microsoft 365 workflow automation
+- Power Automate consulting
+- SharePoint document storage and naming
+- Microsoft Lists trackers and dashboards
+- Optional AI-assisted document prefill for admin review
+
+## Key Pages
+
+- Home: https://adminzero.com.au/
+- Referral Intake Automation: https://adminzero.com.au/referral-intake-automation.html
+- Free Practice Audit: https://adminzero.com.au/free-practice-admin-audit.html
+- Privacy Policy: https://adminzero.com.au/privacy.html
+- Terms: https://adminzero.com.au/terms.html
+- Human-readable sitemap: https://adminzero.com.au/sitemap.html
+
+## Primary Call To Action
+
+Get a Free Practice Audit.
+
+No sales call required. Written audit summary delivered by email.
+
+## Important Boundaries
+
+AdminZero does not replace clinical systems.
+AdminZero does not replace admin staff.
+AdminZero does not make clinical decisions.
+AI-assisted extraction can help prefill information from documents, but output should be reviewed before use.
+Users should not upload sensitive client information unless specifically agreed.
+
+## Contact
+
+Email: djatadminzero@gmail.com
