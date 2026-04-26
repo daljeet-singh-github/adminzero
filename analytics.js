@@ -1,7 +1,7 @@
 window.ADMINZERO_TRACKING = {
-  gaMeasurementId: '',
-  clarityProjectId: '',
-  searchConsoleVerification: ''
+  gaMeasurementId: 'G-82GQ12ZDQP',
+  clarityProjectId: 'whs5c5i5w1',
+  searchConsoleVerification: 'googleff589fcbeb3866ad'
 };
 
 (function() {

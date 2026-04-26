@@ -74,9 +74,9 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 
 ### Tracking
 
-- [ ] Install GA4. Tracking hook added, needs real GA4 Measurement ID.
-- [ ] Install Microsoft Clarity. Tracking hook added, needs real Clarity Project ID.
-- [ ] Add Google Search Console verification. Hook added, needs real verification token.
+- [x] Install GA4.
+- [x] Install Microsoft Clarity.
+- [x] Add Google Search Console verification.
 - [x] Track audit CTA clicks.
 - [x] Track audit form starts.
 - [x] Track audit form submissions.
