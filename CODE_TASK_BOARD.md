@@ -22,16 +22,16 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 
 ### Audit Funnel
 
-- [ ] Rename/rework the existing form as "Free Practice Admin Audit".
-- [ ] Add the 12 audit qualification questions from the project plan.
-- [ ] Add optional upload field for sample forms, screenshots or process documents.
-- [ ] Add upload privacy note asking users to remove sensitive client information.
-- [ ] Add clear post-submit confirmation message.
-- [ ] Connect nav, hero, package, footer and page CTAs to the audit form.
-- [ ] **Added by Codex:** Create a dedicated thank-you page or trackable success state for form submissions.
-- [ ] **Added by Codex:** Add hidden form fields for page URL, page title, referrer and UTM attribution.
-- [ ] **Added by Codex:** Add honeypot spam protection.
-- [ ] Add basic client-side validation and accessible labels.
+- [x] Rename/rework the existing form as "Free Practice Admin Audit".
+- [x] Add the 12 audit qualification questions from the project plan.
+- [x] Add optional upload field for sample forms, screenshots or process documents.
+- [x] Add upload privacy note asking users to remove sensitive client information.
+- [x] Add clear post-submit confirmation message.
+- [x] Connect existing nav, hero and footer CTAs to the audit form. Package, landing page and blog CTAs will be connected when those sections/pages exist.
+- [x] **Added by Codex:** Create a dedicated thank-you page or trackable success state for form submissions.
+- [x] **Added by Codex:** Add hidden form fields for page URL, page title, referrer and UTM attribution.
+- [x] **Added by Codex:** Add honeypot spam protection.
+- [x] Add basic client-side validation and accessible labels.
 
 ### Packages And Trust
 

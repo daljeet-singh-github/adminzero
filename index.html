@@ -29,6 +29,7 @@
       --rule: #0a0a0a;
       --mid: #888;
       --light: #d4d0c8;
+      --error: #b42318;
     }
     html { scroll-behavior: smooth; }
     [id] { scroll-margin-top: 56px; }
@@ -538,12 +539,26 @@
     .audit-form { display: flex; flex-direction: column; gap: 0; }
     .form-field {
       border-top: 1px solid var(--light);
-      padding: 0.75rem 0;
+      padding: 0.95rem 0;
       position: relative;
     }
     .form-field:last-of-type { border-bottom: 1px solid var(--light); }
+    .form-field.has-error {
+      border-top-color: var(--error);
+    }
+    .form-label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.45rem;
+      line-height: 1.5;
+    }
     .audit-form input,
-    .audit-form select {
+    .audit-form select,
+    .audit-form textarea {
       width: 100%;
       background: transparent;
       border: none;
@@ -555,17 +570,71 @@
       padding: 0.25rem 0;
       appearance: none;
     }
-    .audit-form input::placeholder { color: var(--mid); }
+    .audit-form textarea {
+      min-height: 86px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+    .audit-form input::placeholder,
+    .audit-form textarea::placeholder { color: var(--mid); }
     .audit-form select option { background: var(--paper); color: var(--ink); }
+    .field-error {
+      display: none;
+      margin-top: 0.45rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+      color: var(--error);
+      text-transform: uppercase;
+    }
+    .form-field.has-error .field-error { display: block; }
     .form-row-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0 2rem;
       border-top: 1px solid var(--light);
-      padding: 0.75rem 0;
+      padding: 0.95rem 0;
     }
-    .form-row-grid input { border-right: 1px solid var(--light); padding-right: 1rem; }
-    .form-row-grid input:last-child { border-right: none; padding-right: 0; padding-left: 1rem; }
+    .form-row-grid .form-field {
+      border-top: none;
+      padding: 0;
+    }
+    .form-row-grid .form-field:first-child {
+      border-right: 1px solid var(--light);
+      padding-right: 1rem;
+    }
+    .form-row-grid .form-field:last-child { padding-left: 1rem; }
+    .file-input {
+      border: 1px solid var(--light);
+      padding: 0.8rem;
+    }
+    .file-input::file-selector-button {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      border: none;
+      padding: 0.55rem 0.8rem;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+    .privacy-note {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--mid);
+      font-weight: 300;
+    }
+    .honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
     .btn-submit {
       margin-top: 2rem;
       display: inline-block;
@@ -639,6 +708,12 @@
     }
     .footer-right a { color: var(--mid); text-decoration: none; }
     .footer-right a:hover { color: var(--ink); }
+    .footer-cta {
+      display: block;
+      margin-top: 0.45rem;
+      color: var(--ink) !important;
+      text-transform: uppercase;
+    }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -667,6 +742,13 @@
       .audit-section { grid-template-columns: 1fr; }
       .audit-left { border-right: none; border-bottom: 2px solid var(--ink); }
       .audit-right { padding: 3rem 5vw; }
+      .form-row-grid { grid-template-columns: 1fr; gap: 0; }
+      .form-row-grid .form-field:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--light);
+        padding: 0 0 0.95rem;
+      }
+      .form-row-grid .form-field:last-child { padding: 0.95rem 0 0; }
       nav { grid-template-columns: auto 1fr auto; gap: 1rem; padding: 0 4vw; }
       .nav-left { display: none; }
       .nav-menu-toggle { display: flex; }
@@ -889,7 +971,7 @@
     <div class="reveal">
       <div class="step-num">01</div>
       <h3>Free Practice Audit</h3>
-      <p>A 30-minute call to map your admin workflows and identify exactly where time is being lost. No cost, no commitment, no pitch deck.</p>
+      <p>Tell us where admin is slowing your team down. We review your current referral or admin workflow and send a written summary by email.</p>
     </div>
     <div class="reveal">
       <div class="step-num">02</div>
@@ -914,55 +996,137 @@
   <div class="audit-left">
     <div>
       <p class="audit-eyebrow">Free &mdash; No Obligation</p>
-      <h2 class="section-heading">Get your<br/>free<br/><em>Practice<br/>Audit.</em></h2>
-      <p class="audit-desc">A 30-minute conversation. We map your admin bottlenecks, show you exactly what can be automated, and give you an honest assessment of what it is worth.</p>
+      <h2 class="section-heading">Free<br/>Practice<br/><em>Admin<br/>Audit.</em></h2>
+      <p class="audit-desc">Tell us where admin is slowing your team down. You will receive a written summary with practical automation opportunities by email.</p>
     </div>
     <ul class="audit-checklist">
-      <li>Referral and intake workflow review</li>
-      <li>Time and cost analysis of manual processes</li>
-      <li>Clear automation roadmap, ready to act on</li>
-      <li>No lock-in, no obligation, no sales pressure</li>
+      <li>Tell us where admin is slowing your team down</li>
+      <li>We review your current referral or admin workflow</li>
+      <li>You receive 3&ndash;5 practical automation opportunities</li>
+      <li>Start with one fixed-price quick win only if it makes sense</li>
     </ul>
+    <p class="audit-desc">No sales call. No pressure. No obligation.</p>
   </div>
   <div class="audit-right">
-    <p class="form-eyebrow">Get in touch</p>
-    <form class="audit-form" id="auditForm">
+    <p class="form-eyebrow">Free Practice Admin Audit</p>
+    <form class="audit-form" id="auditForm" enctype="multipart/form-data" novalidate>
       <div id="formFields">
+        <input type="hidden" name="page_url" id="pageUrl" />
+        <input type="hidden" name="page_title" id="pageTitle" />
+        <input type="hidden" name="referrer" id="pageReferrer" />
+        <input type="hidden" name="utm_source" id="utmSource" />
+        <input type="hidden" name="utm_medium" id="utmMedium" />
+        <input type="hidden" name="utm_campaign" id="utmCampaign" />
+        <div class="honeypot" aria-hidden="true">
+          <label for="gotcha">Website</label>
+          <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
         <div class="form-row-grid">
-          <input type="text" name="name" placeholder="Your name" required />
-          <input type="text" name="practice" placeholder="Practice name" required />
+          <div class="form-field">
+            <label class="form-label" for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="practice">Practice or business name</label>
+            <input type="text" id="practice" name="practice" placeholder="Practice name" autocomplete="organization" />
+          </div>
         </div>
         <div class="form-field">
-          <input type="email" name="email" placeholder="Email address" required />
+          <label class="form-label" for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="Email address" autocomplete="email" required />
         </div>
         <div class="form-field">
-          <input type="tel" name="phone" placeholder="Phone number (optional)" />
+          <label class="form-label" for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Phone number" autocomplete="tel" required />
         </div>
         <div class="form-field">
-          <select name="size" required>
-            <option value="" disabled selected>Practice size</option>
-            <option>Solo practitioner</option>
-            <option>2&ndash;5 clinicians</option>
-            <option>6&ndash;15 clinicians</option>
-            <option>15+ clinicians</option>
+          <label class="form-label" for="practiceType">What type of practice/business are you?</label>
+          <select id="practiceType" name="practice_type">
+            <option value="" disabled selected>Select one</option>
+            <option>Physiotherapy practice</option>
+            <option>Occupational therapy practice</option>
+            <option>Psychology practice</option>
+            <option>Rehab provider</option>
+            <option>NDIS-adjacent provider</option>
+            <option>Case management provider</option>
+            <option>Multidisciplinary clinic</option>
+            <option>Other allied health practice</option>
           </select>
         </div>
         <div class="form-field">
-          <select name="pain" required>
-            <option value="" disabled selected>Biggest admin headache</option>
-            <option>Referral processing</option>
-            <option>Appointment reminders / no-shows</option>
-            <option>NDIS / insurance paperwork</option>
-            <option>Staff onboarding</option>
-            <option>Something else</option>
+          <label class="form-label" for="teamSize">How many people are in your admin/team?</label>
+          <select id="teamSize" name="admin_team_size">
+            <option value="" disabled selected>Select one</option>
+            <option>1 person</option>
+            <option>2&ndash;3 people</option>
+            <option>4&ndash;6 people</option>
+            <option>7+ people</option>
+            <option>Not sure</option>
           </select>
         </div>
-        <button type="submit" class="btn-submit" id="submitBtn">Get My Free Audit &rarr;</button>
-        <p class="form-note">We respond within one business day &mdash; Melbourne based, serving practices Australia-wide.</p>
+        <div class="form-field">
+          <label class="form-label" for="frustratingTask">What admin task is currently the most frustrating?</label>
+          <textarea id="frustratingTask" name="most_frustrating_admin_task" placeholder="Tell us what keeps slowing the team down."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="referralArrival">How do referrals or enquiries arrive today?</label>
+          <textarea id="referralArrival" name="how_referrals_arrive" placeholder="For example: email, PDFs, web forms, phone calls, attachments."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="trackingPlace">Where do you currently track them?</label>
+          <textarea id="trackingPlace" name="current_tracking_place" placeholder="For example: spreadsheet, inbox, practice system, SharePoint, whiteboard."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="manualCopying">What information gets copied manually?</label>
+          <textarea id="manualCopying" name="information_copied_manually" placeholder="Names, contact details, claim numbers, dates, referrer details, status updates."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="documentsInvolved">What documents are usually involved?</label>
+          <textarea id="documentsInvolved" name="documents_involved" placeholder="Referral forms, PDFs, letters, claim documents, intake forms, reports."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="softwareUsed">What software do you already use?</label>
+          <textarea id="softwareUsed" name="software_used" placeholder="Microsoft 365, Outlook, SharePoint, Teams, practice management software, spreadsheets."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="weeklyVolume">How many referrals or enquiries do you handle per week?</label>
+          <select id="weeklyVolume" name="weekly_referral_volume">
+            <option value="" disabled selected>Select one</option>
+            <option>1&ndash;10</option>
+            <option>11&ndash;25</option>
+            <option>26&ndash;50</option>
+            <option>51+</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="missingInfo">What happens when information is missing?</label>
+          <textarea id="missingInfo" name="missing_information_process" placeholder="Tell us who follows up, how it is tracked, and what usually gets delayed."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="idealProcess">What would you like the process to look like instead?</label>
+          <textarea id="idealProcess" name="ideal_process" placeholder="Describe the cleaner version you would like your team to work from."></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="startingPoint">Are you mainly looking for a quick fix or a full workflow system?</label>
+          <select id="startingPoint" name="quick_fix_or_full_system">
+            <option value="" disabled selected>Select one</option>
+            <option>Quick fix</option>
+            <option>Full workflow system</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="sampleUpload">Upload a sample form, screenshot or process document with sensitive details removed. Optional.</label>
+          <input class="file-input" type="file" id="sampleUpload" name="sample_upload" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" />
+          <p class="privacy-note">Please remove or hide any sensitive client information before uploading examples.</p>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Get a Free Practice Audit &rarr;</button>
+        <p class="form-note">No sales call required. Written audit summary delivered by email.</p>
       </div>
-      <div class="success-block" id="formSuccess">
-        <h3>Your request is in.</h3>
-        <p>We will be in touch within one business day to confirm your audit time. Check your inbox &mdash; including spam just in case.</p>
+      <div class="success-block" id="audit-submitted">
+        <h3>Thanks &mdash; your Free Practice Admin Audit request has been received.</h3>
+        <p>You&rsquo;ll receive a written summary by email. No sales call required.</p>
       </div>
     </form>
   </div>
@@ -974,6 +1138,7 @@
   <a href="#" class="footer-logo">Admin<em style="font-style:italic;">Zero</em></a>
   <div class="footer-right">
     <a href="mailto:djatadminzero@gmail.com">djatadminzero@gmail.com</a>
+    <a href="#audit" class="footer-cta">Get a Free Practice Audit</a>
   </div>
 </footer>
 
@@ -996,8 +1161,77 @@
     });
   }
 
-  document.getElementById('auditForm').addEventListener('submit', async function(e) {
+  var auditForm = document.getElementById('auditForm');
+  var requiredFields = auditForm.querySelectorAll('input[required], select[required], textarea[required]');
+
+  function getFieldLabel(field) {
+    var label = auditForm.querySelector('label[for="' + field.id + '"]');
+    return label ? label.textContent.replace(/, optional/i, '').replace(/\?$/, '').trim() : 'This field';
+  }
+
+  function getErrorMessage(field) {
+    if (field.validity.valueMissing) return getFieldLabel(field) + ' is required.';
+    if (field.validity.typeMismatch && field.type === 'email') return 'Please enter a valid email address.';
+    return 'Please check this field.';
+  }
+
+  function setFieldError(field, message) {
+    var wrapper = field.closest('.form-field');
+    if (!wrapper) return;
+    var error = wrapper.querySelector('.field-error');
+    if (!error) {
+      error = document.createElement('p');
+      error.className = 'field-error';
+      error.id = field.id + 'Error';
+      wrapper.appendChild(error);
+    }
+    error.textContent = message;
+    wrapper.classList.add('has-error');
+    field.setAttribute('aria-invalid', 'true');
+    field.setAttribute('aria-describedby', error.id);
+  }
+
+  function clearFieldError(field) {
+    var wrapper = field.closest('.form-field');
+    if (!wrapper) return;
+    var error = wrapper.querySelector('.field-error');
+    if (error) error.textContent = '';
+    wrapper.classList.remove('has-error');
+    field.removeAttribute('aria-invalid');
+    field.removeAttribute('aria-describedby');
+  }
+
+  function validateAuditForm() {
+    var firstInvalid = null;
+    requiredFields.forEach(function(field) {
+      if (field.validity.valid) {
+        clearFieldError(field);
+      } else {
+        setFieldError(field, getErrorMessage(field));
+        if (!firstInvalid) firstInvalid = field;
+      }
+    });
+    if (firstInvalid) {
+      firstInvalid.focus();
+      firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+    return true;
+  }
+
+  requiredFields.forEach(function(field) {
+    field.addEventListener('input', function() {
+      if (field.validity.valid) clearFieldError(field);
+    });
+    field.addEventListener('change', function() {
+      if (field.validity.valid) clearFieldError(field);
+    });
+  });
+
+  auditForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    if (!validateAuditForm()) return;
+    if (document.getElementById('gotcha').value) return;
     var btn = document.getElementById('submitBtn');
     btn.textContent = 'Sending...';
     btn.disabled = true;
@@ -1009,7 +1243,8 @@
       });
       if (response.ok) {
         document.getElementById('formFields').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
+        document.getElementById('audit-submitted').style.display = 'block';
+        history.replaceState(null, '', '#audit-submitted');
       } else {
         btn.textContent = 'Something went wrong, please try again';
         btn.disabled = false;
@@ -1019,6 +1254,14 @@
       btn.disabled = false;
     }
   });
+
+  var params = new URLSearchParams(window.location.search);
+  document.getElementById('pageUrl').value = window.location.href;
+  document.getElementById('pageTitle').value = document.title;
+  document.getElementById('pageReferrer').value = document.referrer;
+  document.getElementById('utmSource').value = params.get('utm_source') || '';
+  document.getElementById('utmMedium').value = params.get('utm_medium') || '';
+  document.getElementById('utmCampaign').value = params.get('utm_campaign') || '';
 
   var reveals = document.querySelectorAll('.reveal');
   var io = new IntersectionObserver(function(entries) {
