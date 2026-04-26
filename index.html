@@ -730,12 +730,11 @@
     /* ── AUDIT / FORM ── */
     .audit-section {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(240px, 0.45fr) minmax(0, 1.55fr);
       border-bottom: 2px solid var(--ink);
-      min-height: 600px;
     }
     .audit-left {
-      padding: 4rem 4rem 4rem 5vw;
+      padding: 2.5rem 2rem 2.5rem 5vw;
       border-right: 2px solid var(--ink);
       background: var(--ink);
       color: var(--paper);
@@ -743,6 +742,7 @@
       flex-direction: column;
       justify-content: space-between;
     }
+    .audit-left .section-heading { font-size: 1.72rem; }
     .audit-left .section-heading { color: var(--paper); }
     .audit-left .section-heading em { color: var(--paper); }
     .audit-eyebrow {
@@ -754,8 +754,8 @@
       margin-bottom: 1.5rem;
     }
     .audit-desc {
-      font-size: 0.9rem;
-      line-height: 1.75;
+      font-size: 0.84rem;
+      line-height: 1.65;
       color: #aaa;
       font-weight: 300;
       margin-top: 1.5rem;
@@ -772,7 +772,7 @@
       display: flex;
       align-items: flex-start;
       gap: 1rem;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: #aaa;
       line-height: 1.5;
       font-weight: 300;
@@ -789,7 +789,7 @@
     .audit-checklist li:nth-child(3)::before { content: '03'; }
     .audit-checklist li:nth-child(4)::before { content: '04'; }
     .audit-right {
-      padding: 4rem 5vw 4rem 4rem;
+      padding: 2.5rem 5vw 2.5rem 2.5rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -802,12 +802,20 @@
       color: var(--mid);
       margin-bottom: 2rem;
     }
-    .audit-form { display: flex; flex-direction: column; gap: 0; }
+    .audit-form { display: block; }
+    #formFields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2rem;
+    }
     .form-field {
       border-top: 1px solid var(--light);
-      padding: 0.95rem 0;
+      padding: 0.75rem 0;
       position: relative;
     }
+    .form-field-full,
+    .btn-submit,
+    .form-note { grid-column: 1 / -1; }
     .form-field:last-of-type { border-bottom: 1px solid var(--light); }
     .form-field.has-error {
       border-top-color: var(--error);
@@ -837,7 +845,7 @@
       appearance: none;
     }
     .audit-form textarea {
-      min-height: 86px;
+      min-height: 70px;
       resize: vertical;
       line-height: 1.6;
     }
@@ -855,22 +863,6 @@
       text-transform: uppercase;
     }
     .form-field.has-error .field-error { display: block; }
-    .form-row-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 2rem;
-      border-top: 1px solid var(--light);
-      padding: 0.95rem 0;
-    }
-    .form-row-grid .form-field {
-      border-top: none;
-      padding: 0;
-    }
-    .form-row-grid .form-field:first-child {
-      border-right: 1px solid var(--light);
-      padding-right: 1rem;
-    }
-    .form-row-grid .form-field:last-child { padding-left: 1rem; }
     .file-input {
       border: 1px solid var(--light);
       padding: 0.8rem;
@@ -1021,13 +1013,7 @@
       .audit-section { grid-template-columns: 1fr; }
       .audit-left { border-right: none; border-bottom: 2px solid var(--ink); }
       .audit-right { padding: 3rem 5vw; }
-      .form-row-grid { grid-template-columns: 1fr; gap: 0; }
-      .form-row-grid .form-field:first-child {
-        border-right: none;
-        border-bottom: 1px solid var(--light);
-        padding: 0 0 0.95rem;
-      }
-      .form-row-grid .form-field:last-child { padding: 0.95rem 0 0; }
+      #formFields { grid-template-columns: 1fr; }
       nav { grid-template-columns: auto 1fr auto; gap: 1rem; padding: 0 4vw; }
       .nav-left { display: none; }
       .nav-menu-toggle { display: flex; }
@@ -1496,15 +1482,13 @@
           <label for="gotcha">Website</label>
           <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off" />
         </div>
-        <div class="form-row-grid">
-          <div class="form-field">
-            <label class="form-label" for="name">Your name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="practice">Practice or business name</label>
-            <input type="text" id="practice" name="practice" placeholder="Practice name" autocomplete="organization" />
-          </div>
+        <div class="form-field">
+          <label class="form-label" for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="practice">Practice or business name</label>
+          <input type="text" id="practice" name="practice" placeholder="Practice name" autocomplete="organization" />
         </div>
         <div class="form-field">
           <label class="form-label" for="email">Email address</label>
@@ -1591,7 +1575,7 @@
             <option>Not sure yet</option>
           </select>
         </div>
-        <div class="form-field">
+        <div class="form-field form-field-full">
           <label class="form-label" for="sampleUpload">Upload a sample form, screenshot or process document with sensitive details removed. Optional.</label>
           <input class="file-input" type="file" id="sampleUpload" name="sample_upload" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" />
           <p class="privacy-note">Please remove or hide any sensitive client information before uploading examples.</p>
