@@ -68,7 +68,7 @@ No sales call is required.
 
 ## Privacy And AI Boundaries
 
-Users should remove or hide sensitive client information before uploading examples.
+Users should remove or hide sensitive client information before sharing examples.
 
 AI-assisted extraction can help prefill information from documents, but output may not always be complete or correct. Extracted information should be reviewed before use.
 

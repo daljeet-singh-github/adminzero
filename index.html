@@ -815,6 +815,7 @@
     }
     .form-field-full,
     .btn-submit,
+    .form-submit-error,
     .form-note { grid-column: 1 / -1; }
     .form-field:last-of-type { border-bottom: 1px solid var(--light); }
     .form-field.has-error {
@@ -823,12 +824,13 @@
     .form-label {
       display: block;
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: var(--ink);
       margin-bottom: 0.45rem;
       line-height: 1.5;
+      font-weight: 500;
     }
     .audit-form input,
     .audit-form select,
@@ -838,7 +840,7 @@
       border: none;
       outline: none;
       font-family: 'Jost', sans-serif;
-      font-size: 0.9rem;
+      font-size: 0.84rem;
       font-weight: 300;
       color: var(--ink);
       padding: 0.25rem 0;
@@ -850,7 +852,10 @@
       line-height: 1.6;
     }
     .audit-form input::placeholder,
-    .audit-form textarea::placeholder { color: var(--mid); }
+    .audit-form textarea::placeholder {
+      color: #9f9a91;
+      font-size: 0.78rem;
+    }
     .audit-form select option { background: var(--paper); color: var(--ink); }
     .field-error {
       display: none;
@@ -863,25 +868,9 @@
       text-transform: uppercase;
     }
     .form-field.has-error .field-error { display: block; }
-    .file-input {
-      border: 1px solid var(--light);
-      padding: 0.8rem;
-    }
-    .file-input::file-selector-button {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--paper);
-      background: var(--ink);
-      border: none;
-      padding: 0.55rem 0.8rem;
-      margin-right: 1rem;
-      cursor: pointer;
-    }
     .privacy-note {
       margin-top: 0.5rem;
-      font-size: 0.78rem;
+      font-size: 0.68rem;
       line-height: 1.6;
       color: var(--mid);
       font-weight: 300;
@@ -910,6 +899,17 @@
     }
     .btn-submit:hover { opacity: 0.75; }
     .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+    .form-submit-error {
+      display: none;
+      margin-top: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      line-height: 1.6;
+      color: var(--error);
+      text-transform: uppercase;
+    }
+    .form-submit-error.is-visible { display: block; }
     .form-note {
       margin-top: 1rem;
       font-family: 'DM Mono', monospace;
@@ -1418,7 +1418,7 @@
     </article>
     <article class="faq-item">
       <h3>Can you work from screenshots or sample documents?</h3>
-      <p>Yes. You can upload a sample form, screenshot or process document with sensitive details removed.</p>
+      <p>Yes. You can describe the example in the audit form or paste a secure share link with sensitive details removed.</p>
     </article>
     <article class="faq-item">
       <h3>Do you replace our admin staff?</h3>
@@ -1445,8 +1445,8 @@
       <p>Yes. The starting point is a practical admin workflow, not a large software project.</p>
     </article>
     <article class="faq-item">
-      <h3>What should we remove before uploading sample documents?</h3>
-      <p>Please remove or hide any sensitive client information before uploading examples. Do not upload actual patient or client data unless specifically agreed.</p>
+      <h3>What should we remove before sharing sample documents?</h3>
+      <p>Please remove or hide any sensitive client information before sharing examples. Do not include actual patient or client data in the form unless specifically agreed.</p>
     </article>
   </div>
   <p class="trust-line">AI-assisted extraction can help prefill information from documents, but it may not always be complete or correct. Extracted information should be reviewed before use.</p>
@@ -1470,7 +1470,7 @@
   </div>
   <div class="audit-right">
     <p class="form-eyebrow">Free Practice Admin Audit</p>
-    <form class="audit-form" id="auditForm" enctype="multipart/form-data" novalidate>
+    <form class="audit-form" id="auditForm" action="https://formspree.io/f/mvzdokqv" method="POST" novalidate>
       <div id="formFields">
         <input type="hidden" name="page_url" id="pageUrl" />
         <input type="hidden" name="page_title" id="pageTitle" />
@@ -1576,16 +1576,17 @@
           </select>
         </div>
         <div class="form-field form-field-full">
-          <label class="form-label" for="sampleUpload">Upload a sample form, screenshot or process document with sensitive details removed. Optional.</label>
-          <input class="file-input" type="file" id="sampleUpload" name="sample_upload" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" />
-          <p class="privacy-note">Please remove or hide any sensitive client information before uploading examples.</p>
+          <label class="form-label" for="sampleContext">Sample form, screenshot or process document. Optional.</label>
+          <textarea id="sampleContext" name="sample_context" placeholder="Briefly describe the example, or paste a secure share link if you already have one."></textarea>
+          <p class="privacy-note">Please remove or hide any sensitive client information before sharing examples. Do not include actual client or patient data in this form.</p>
         </div>
         <button type="submit" class="btn-submit" id="submitBtn">Get a Free Practice Audit &rarr;</button>
+        <p class="form-submit-error" id="formSubmitError" role="alert" aria-live="polite"></p>
         <p class="form-note">No sales call required. Written audit summary delivered by email.</p>
       </div>
       <div class="success-block" id="audit-submitted">
         <h3>Thanks &mdash; your Free Practice Admin Audit request has been received.</h3>
-        <p>You&rsquo;ll receive a written summary by email. No sales call required.</p>
+        <p>We&rsquo;ll review what you shared and be in touch soon by email with the next step. No sales call required.</p>
       </div>
     </form>
   </div>
@@ -1631,6 +1632,7 @@
 
   var auditForm = document.getElementById('auditForm');
   var requiredFields = auditForm.querySelectorAll('input[required], select[required], textarea[required]');
+  var submitError = document.getElementById('formSubmitError');
   var auditFormStarted = false;
 
   auditForm.addEventListener('input', function(e) {
@@ -1677,6 +1679,18 @@
     field.removeAttribute('aria-describedby');
   }
 
+  function showSubmitError(message) {
+    if (!submitError) return;
+    submitError.textContent = message;
+    submitError.classList.add('is-visible');
+  }
+
+  function clearSubmitError() {
+    if (!submitError) return;
+    submitError.textContent = '';
+    submitError.classList.remove('is-visible');
+  }
+
   function validateAuditForm() {
     var firstInvalid = null;
     requiredFields.forEach(function(field) {
@@ -1706,15 +1720,17 @@
 
   auditForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    clearSubmitError();
     if (!validateAuditForm()) return;
     if (document.getElementById('gotcha').value) return;
     var btn = document.getElementById('submitBtn');
     btn.textContent = 'Sending...';
     btn.disabled = true;
+    var formData = new FormData(this);
     try {
-      var response = await fetch('https://formspree.io/f/mvzdokqv', {
+      var response = await fetch(this.action, {
         method: 'POST',
-        body: new FormData(this),
+        body: formData,
         headers: { 'Accept': 'application/json' }
       });
       if (response.ok) {
@@ -1723,11 +1739,24 @@
         history.replaceState(null, '', '#audit-submitted');
         trackEvent('audit_form_submit', { page_path: window.location.pathname });
       } else {
-        btn.textContent = 'Something went wrong, please try again';
+        var message = 'The form could not be submitted. Please check the details or email djatadminzero@gmail.com.';
+        try {
+          var data = await response.json();
+          if (data && data.errors && data.errors.length) {
+            message = data.errors.map(function(error) {
+              return error.message || error.code || 'Formspree rejected one field.';
+            }).join(' ');
+          } else if (data && data.error) {
+            message = data.error;
+          }
+        } catch (parseError) {}
+        showSubmitError(message);
+        btn.textContent = 'Get a Free Practice Audit \u2192';
         btn.disabled = false;
       }
     } catch(err) {
-      btn.textContent = 'Something went wrong, please try again';
+      showSubmitError('The form could not be submitted. Please try again or email djatadminzero@gmail.com.');
+      btn.textContent = 'Get a Free Practice Audit \u2192';
       btn.disabled = false;
     }
   });

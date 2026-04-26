@@ -24,8 +24,8 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 
 - [x] Rename/rework the existing form as "Free Practice Admin Audit".
 - [x] Add the 12 audit qualification questions from the project plan.
-- [x] Add optional upload field for sample forms, screenshots or process documents.
-- [x] Add upload privacy note asking users to remove sensitive client information.
+- [x] Replace optional upload field with a sample-context text field because Formspree file uploads are not permitted.
+- [x] Add sample-sharing privacy note asking users to remove sensitive client information.
 - [x] Add clear post-submit confirmation message.
 - [x] Connect existing nav, hero, footer, package and landing page CTAs to the audit form. Blog CTAs will be connected when blog pages exist.
 - [x] **Added by Codex:** Create a dedicated thank-you page or trackable success state for form submissions.
@@ -125,7 +125,7 @@ Items marked **Added by Codex** were not explicitly listed in the project plan, 
 - [x] Add `Offer` schema for packages and starting prices.
 - [x] Add a short site summary near the homepage footer reinforcing AdminZero's audience, offer and Microsoft 365 positioning.
 - [x] Use descriptive internal link text for key pages, especially referral intake automation and the free practice audit.
-- [x] Keep AI/privacy boundaries explicit wherever AI is mentioned: AI assists admin review, does not make clinical decisions, and users should not upload sensitive client information unless specifically agreed.
+- [x] Keep AI/privacy boundaries explicit wherever AI is mentioned: AI assists admin review, does not make clinical decisions, and users should not share sensitive client information unless specifically agreed.
 - [x] Review `robots.txt` after adding AI-readable files to ensure important public pages remain crawlable.
 
 ---

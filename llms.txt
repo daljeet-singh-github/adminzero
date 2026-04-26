@@ -45,7 +45,7 @@ AdminZero does not replace clinical systems.
 AdminZero does not replace admin staff.
 AdminZero does not make clinical decisions.
 AI-assisted extraction can help prefill information from documents, but output should be reviewed before use.
-Users should not upload sensitive client information unless specifically agreed.
+Users should not share sensitive client information unless specifically agreed.
 
 ## Contact
 
