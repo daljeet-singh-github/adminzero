@@ -987,6 +987,34 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1300px) {
+      nav { grid-template-columns: auto 1fr auto; gap: 1rem; padding: 0 4vw; }
+      .nav-left { display: none; }
+      .nav-menu-toggle { display: flex; }
+      .nav-logo { text-align: left; }
+      .mobile-menu {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        display: none;
+        background: var(--paper);
+        border-bottom: 2px solid var(--ink);
+        padding: 1rem 5vw;
+      }
+      .mobile-menu.is-open {
+        display: grid;
+        gap: 0.85rem;
+      }
+      .mobile-menu .nav-link {
+        color: var(--ink);
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--light);
+      }
+      .mobile-menu .nav-link:last-child { border-bottom: none; }
+    }
+
     @media (max-width: 900px) {
       .headline-wrap { grid-template-columns: 1fr; }
       .headline-aside { border-left: none; border-top: 1px solid var(--light); padding-left: 0; padding-top: 1.5rem; margin-top: 1.5rem; }
@@ -1014,32 +1042,7 @@
       .audit-left { border-right: none; border-bottom: 2px solid var(--ink); }
       .audit-right { padding: 3rem 5vw; }
       #formFields { grid-template-columns: 1fr; }
-      nav { grid-template-columns: auto 1fr auto; gap: 1rem; padding: 0 4vw; }
-      .nav-left { display: none; }
-      .nav-menu-toggle { display: flex; }
-      .nav-logo { text-align: left; }
       .nav-cta { font-size: 0.58rem; padding: 0.45rem 0.7rem; }
-      .mobile-menu {
-        position: fixed;
-        top: 56px;
-        left: 0;
-        right: 0;
-        z-index: 99;
-        display: none;
-        background: var(--paper);
-        border-bottom: 2px solid var(--ink);
-        padding: 1rem 5vw;
-      }
-      .mobile-menu.is-open {
-        display: grid;
-        gap: 0.85rem;
-      }
-      .mobile-menu .nav-link {
-        color: var(--ink);
-        padding: 0.6rem 0;
-        border-bottom: 1px solid var(--light);
-      }
-      .mobile-menu .nav-link:last-child { border-bottom: none; }
       footer { grid-template-columns: 1fr 1fr; }
       .footer-logo { display: none; }
     }

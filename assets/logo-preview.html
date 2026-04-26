@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdminZero Logo Assets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&amp;display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #e8e5de;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      min-height: 100vh;
+      font-family: 'Playfair Display', serif;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 600px;
+      padding: 4rem 5rem;
+    }
+    .logo-light { background: #f4f1eb; }
+    .logo-dark { background: #0a0a0a; }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 80px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .logo-light .logo { color: #0a0a0a; }
+    .logo-dark .logo { color: #f4f1eb; }
+    .logo em { font-style: italic; }
+    .label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+      padding: 0.6rem 0;
+      text-align: center;
+      width: 600px;
+      background: #e8e5de;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-wrap logo-light">
+    <span class="logo">Admin<em>Zero</em></span>
+  </div>
+  <p class="label">Light - #f4f1eb / #0a0a0a</p>
+  <div class="logo-wrap logo-dark">
+    <span class="logo">Admin<em>Zero</em></span>
+  </div>
+  <p class="label">Dark - #0a0a0a / #f4f1eb</p>
+</body>
+</html>

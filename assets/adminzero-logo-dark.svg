@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" role="img" aria-label="AdminZero">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&amp;display=swap');
+    .logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 80px; letter-spacing: -0.02em; }
+    .zero { font-family: 'Playfair Display', serif; font-weight: 900; font-style: italic; font-size: 80px; letter-spacing: -0.02em; }
+  </style>
+  <rect width="600" height="220" fill="#0a0a0a"/>
+  <text x="300" y="128" text-anchor="middle" fill="#f4f1eb">
+    <tspan class="logo">Admin</tspan><tspan class="zero">Zero</tspan>
+  </text>
+</svg>

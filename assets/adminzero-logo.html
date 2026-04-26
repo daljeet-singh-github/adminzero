@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #e8e5de;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      min-height: 80vh;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      width: 500px;
+      padding: 3rem 4rem;
+    }
+
+    .logo-light { background: #f4f1eb; }
+    .logo-dark  { background: #0a0a0a; }
+
+    .logo-icon {
+      flex-shrink: 0;
+      width: 90px;
+      height: 90px;
+    }
+
+    .logo-light .icon-bg { fill: #0a0a0a; }
+    .logo-dark  .icon-bg { fill: #f4f1eb; }
+
+    /* Dark version: invert the document stroke to contrast against light bg icon */
+    .logo-dark .icon-doc { stroke: #0a0a0a; }
+    .logo-light .icon-doc { stroke: #f4f1eb; }
+
+    /* Dark version: circle fill matches light bg */
+    .logo-dark .icon-circle { fill: #f4f1eb; }
+    .logo-light .icon-circle { fill: #0a0a0a; }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .logo-light .logo-text { color: #0a0a0a; }
+    .logo-dark  .logo-text { color: #f4f1eb; }
+
+    .logo-text em { font-style: italic; }
+
+    .label {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #888;
+      padding: 0.4rem 0;
+      text-align: center;
+      width: 700px;
+      background: #e8e5de;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Light version -->
+  <div class="logo-wrap logo-light">
+    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <rect class="icon-bg" width="64" height="64" rx="14"/>
+      <path class="icon-doc" d="M18 21h28v22H18z" fill="none" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M18 30h13l4 5h11" fill="none" stroke="#6ee7d8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="icon-circle" cx="46" cy="22" r="8" stroke="#ff6f61" stroke-width="4"/>
+      <path d="M41 27 51 17" stroke="#ffb84d" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">Admin<em>Zero</em></span>
+  </div>
+  <p class="label">Light — #f4f1eb / #0a0a0a</p>
+
+  <!-- Dark version -->
+  <div class="logo-wrap logo-dark">
+    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <rect class="icon-bg" width="64" height="64" rx="14"/>
+      <path class="icon-doc" d="M18 21h28v22H18z" fill="none" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M18 30h13l4 5h11" fill="none" stroke="#6ee7d8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle class="icon-circle" cx="46" cy="22" r="8" stroke="#ff6f61" stroke-width="4"/>
+      <path d="M41 27 51 17" stroke="#ffb84d" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">Admin<em>Zero</em></span>
+  </div>
+  <p class="label">Dark — #0a0a0a / #f4f1eb</p>
+
+</body>
+</html>
